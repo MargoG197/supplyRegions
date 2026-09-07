@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import './Layout.css';
+// import './Layout.css';
 
 interface LayoutProps {
   children: React.ReactNode;
