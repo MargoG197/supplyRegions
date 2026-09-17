@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useScannerStore } from '~/shared/store/scannerStore';
 // import './Layout.css';
 
 interface LayoutProps {
@@ -16,6 +17,17 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     { key: '/distributions', label: '📤 Раздачи' },
     { key: '/campaigns', label: '📋 Региональные акции' },
   ];
+
+  const { openScanner } = useScannerStore();
+
+const handleScanClick = () => {
+  openScanner((text:string) => {
+    console.log('Отсканировано:', text);
+    // Здесь можно обработать результат:
+    // navigate(`/withdrawals/${text}`)
+    // или показать модалку с подтверждением
+  });
+};
 
   return (
     <div className="layout">
@@ -56,6 +68,24 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
           {children}
         </main>
       </div>
+      <button
+  onClick={handleScanClick}
+  style={{
+    padding: '8px 16px',
+    background: '#1677ff',
+    color: '#fff',
+    border: 'none',
+    borderRadius: 8,
+    fontSize: 14,
+    fontWeight: 600,
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8,
+  }}
+>
+  📷 Сканировать
+</button>
     </div>
   );
 };

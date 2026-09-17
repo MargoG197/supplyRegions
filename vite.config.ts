@@ -11,27 +11,76 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icon-192.png', 'icon-512.png'],
+      includeAssets: ['favicon.ico', 'icon-192.png', 'icon-512.png'],
       manifest: {
-        name: 'Supply Regions',
-        short_name: 'Supply',
+        name: 'Дари еду регионы',
+        short_name: 'Дари еду регионы',
         description: 'Управление поставками продуктовых наборов',
         theme_color: '#1677ff',
         background_color: '#ffffff',
         display: 'standalone',
-        icons: [
+        orientation: 'portrait',
+        scope: '/',
+        start_url: '/',
+         icons: [
           {
-            src: 'icon-192.png',
+            src: 'pwa-64x64.png',
+            sizes: '64x64',
+            type: 'image/png',
+          },
+          {
+            src: 'pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: 'icon-512.png',
+            src: 'pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any',
           },
+          {
+            src: 'maskable-icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
         ],
+      },
+      // ✅ ДОБАВЛЯЕМ: настройки Workbox для офлайн-режима
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        runtimeCaching: [
+          {
+            // Кеширование API-запросов
+            urlPattern: /^https:\/\/api\./i,
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'api-cache',
+              expiration: {
+                maxEntries: 100,
+                maxAgeSeconds: 60 * 60 * 24, // 24 часа
+              },
+              networkTimeoutSeconds: 10,
+            },
+          },
+          {
+
+            urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp)$/,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'images-cache',
+              expiration: {
+                maxEntries: 100,
+                maxAgeSeconds: 60 * 60 * 24 * 30, // 30 дней
+              },
+            },
+          },
+        ],
+      },
+      devOptions: {
+        enabled: true,
+        type: 'module',
       },
     }),
   ],
