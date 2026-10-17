@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import tailwindcss from '@tailwindcss/vite'
+import svgr from 'vite-plugin-svgr';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -16,8 +18,6 @@ export default defineConfig({
         name: 'Дари еду регионы',
         short_name: 'Дари еду регионы',
         description: 'Управление поставками продуктовых наборов',
-        theme_color: '#1677ff',
-        background_color: '#ffffff',
         display: 'standalone',
         orientation: 'portrait',
         scope: '/',
@@ -47,9 +47,11 @@ export default defineConfig({
           },
         ],
       },
-      // ✅ ДОБАВЛЯЕМ: настройки Workbox для офлайн-режима
+      // Настройки Workbox для офлайн-режима
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        navigateFallback: '/index.html', 
+        navigateFallbackDenylist: [/^\/api/], 
         runtimeCaching: [
           {
             // Кеширование API-запросов
@@ -83,11 +85,14 @@ export default defineConfig({
         type: 'module',
       },
     }),
+    tailwindcss(),
+    svgr(),
   ],
   resolve: {
     alias: {
       '~': path.resolve(__dirname, './src'),
       '~app': path.resolve(__dirname, './src/app'),
+      '~assets': path.resolve(__dirname, './src/assets'),
       '~pages': path.resolve(__dirname, './src/pages'),
       '~widgets': path.resolve(__dirname, './src/widgets'),
       '~features': path.resolve(__dirname, './src/features'),

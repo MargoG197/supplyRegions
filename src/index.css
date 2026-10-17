@@ -1,111 +1,185 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+/* index.css */
+@import "tailwindcss";
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+/* ============================================================
+   Перенос theme.extend из старого tailwind.config.js
+   ============================================================ */
+@theme {
+  /* opacity: { 47: '0.47' } */
+  --opacity-47: 0.47;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* colors.light.* */
+  --color-light-gray-white: #FFFFFF;
+  --color-light-gray-1: #F2F2F2;
+  --color-light-gray-2: #D7D7D7;
+  --color-light-gray-3: #BFBFBF;
+  --color-light-gray-4: #888888;
+  --color-light-gray-5: #575757;
+  --color-light-gray-6: #323232;
+  --color-light-gray-7-logo: #1F1F1F;
+  --color-light-gray-black: #111111;
+  --color-light-brand-green: #1F7B4E;
+  --color-light-error-red: #EB5757;
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
+  /* borderRadius.* */
+  --radius-xs: 10px;
+  --radius-s: 12px;
+  --radius-m: 14px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+}
+
+/* darkMode: 'class' — в v4 это делается директивой */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============================================================
+   @layer base — @font-face (без изменений)
+   ============================================================ */
+@layer base {
+  @font-face {
+    font-family: 'TikTokSans';
+    font-style: normal;
+    font-weight: 300;
+    src: url(./assets/fonts/TikTokSans-Light.woff) format('woff');
+  }
+  @font-face {
+    font-family: 'TikTokSans';
+    font-style: normal;
+    font-weight: 400;
+    src: url(./assets/fonts/TikTokSans-Regular.woff) format('woff');
+  }
+  @font-face {
+    font-family: 'TikTokSans';
+    font-style: normal;
+    font-weight: 500;
+    src: url(./assets/fonts/TikTokSans-Medium.woff) format('woff');
+  }
+  @font-face {
+    font-family: 'TikTokSans';
+    font-style: normal;
+    font-weight: 600;
+    src: url(./assets/fonts/TikTokSans-SemiBold.woff) format('woff');
+  }
+  @font-face {
+    font-family: 'TikTokSans';
+    font-style: normal;
+    font-weight: 700;
+    src: url(./assets/fonts/TikTokSans-Bold.woff) format('woff');
+  }
+  @font-face {
+    font-family: 'TikTokSans';
+    font-style: normal;
+    font-weight: 800;
+    src: url(./assets/fonts/TikTokSans-ExtraBold.woff) format('woff');
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+/* ============================================================
+   Пользовательские утилиты из старого plugins (addUtilities)
+   Каждый класс один-в-один как был.
+   ============================================================ */
+@utility font-headline-h1 {
+  font-family: 'TikTokSans';
+  font-size: 28px;
+  line-height: 34px;
+  font-weight: 800;
 }
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+@utility font-headline-h2 {
+  font-family: 'TikTokSans';
+  font-size: 20px;
+  line-height: 27px;
+  font-weight: 700;
 }
-
-body {
-  margin: 0;
+@utility font-headline-h3 {
+  font-family: 'TikTokSans';
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 600;
 }
-
-h1,
-h2 {
-  font-family: var(--heading);
+@utility font-bodytext-regular {
+  font-family: 'TikTokSans';
+  font-size: 17px;
+  line-height: 25px;
+  font-weight: 400;
+}
+@utility font-bodytext-m {
+  font-family: 'TikTokSans';
+  font-size: 17px;
+  line-height: 25px;
   font-weight: 500;
-  color: var(--text-h);
+}
+@utility font-caption-regular {
+  font-family: 'TikTokSans';
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+@utility font-label-regular {
+  font-family: 'TikTokSans';
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+}
+@utility font-label-emphasized {
+  font-family: 'TikTokSans';
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 300;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+/* ============================================================
+   @layer components — бывшие классы .btn-* и базовые селекторы
+   Переведены на @utility, чтобы точно работали в v4.
+   ============================================================ */
+@utility btn-B-GreenDefault {
+  @apply w-89.5 h-12.75 min-h-12.75 rounded-xs font-bodytext-m bg-light-brand-green text-light-gray-white disabled:bg-light-gray-3 dark:disabled:bg-light-gray-5;
+}
+@utility btn-B-GreenInactive {
+  @apply w-89.5 h-12.75 min-h-12.75 rounded-xs font-bodytext-regular bg-light-gray-3 text-light-gray-white dark:bg-light-gray-5;
+}
+@utility btn-B-WhiteDefault {
+  @apply w-89.5 h-12.75 min-h-12.75 rounded-xs font-bodytext-regular border border-light-brand-green bg-light-gray-white text-light-gray-black dark:bg-light-gray-6 dark:text-light-gray-white;
+}
+@utility btn-B-GrayDefault {
+  @apply w-89.5 h-12.75 min-h-12.75 rounded-xs font-bodytext-m bg-light-gray-1 text-light-gray-black;
+}
+@utility btn-M-GreenDefault {
+  @apply w-39.75 h-10.75 min-h-10.75 rounded-xs font-bodytext-m bg-light-brand-green text-light-gray-white;
+}
+@utility btn-M-GreenClicked {
+  @apply w-39.75 h-10.75 min-h-10.75 rounded-xs font-bodytext-m bg-light-gray-6 text-light-gray-white;
+}
+@utility btn-M-WhiteDefault {
+  @apply w-39.75 h-10.75 min-h-10.75 rounded-xs border border-light-brand-green font-bodytext-regular bg-light-gray-white text-light-gray-black dark:font-bodytext-m dark:bg-light-gray-6 dark:text-light-gray-white;
+}
+@utility btn-M-WhiteClicked {
+  @apply w-39.75 h-10.75 min-h-10.75 rounded-xs font-bodytext-m bg-light-gray-1 text-light-gray-black;
+}
+@utility btn-S-GreenDefault {
+  @apply w-39.75 h-10.75 min-h-10.75 rounded-xs font-bodytext-m bg-light-brand-green text-light-gray-white;
+}
+@utility btn-S-GreenRevert {
+  @apply w-39.75 h-10.75 min-h-10.75 rounded-xs font-bodytext-m border border-light-brand-green bg-light-gray-white text-light-gray-black dark:font-bodytext-m dark:bg-light-gray-5 dark:border-light-gray-5 dark:text-light-gray-white;
+}
+@utility btn-S-GreenInactive {
+  @apply w-39.75 h-10.75 min-h-10.75 rounded-xs font-bodytext-regular bg-light-gray-3 text-light-gray-white dark:bg-light-gray-5 dark:text-light-gray-4;
+}
+
+/* Базовые селекторы #root / body / html — остаются в @layer base */
+@layer base {
+  #root {
+    @apply p-0 bg-light-gray-1 dark:bg-light-gray-black;
   }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
+  body {
+    @apply m-0 p-0 bg-light-gray-1 w-screen h-screen dark:bg-light-gray-black overflow-x-hidden;
   }
-}
-p {
-  margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+  html ::-webkit-scrollbar {
+    @apply w-0;
+  }
+  html ::-webkit-scrollbar-track {
+    @apply bg-none;
+  }
+  html ::-webkit-scrollbar-thumb {
+    @apply bg-none;
+  }
 }
