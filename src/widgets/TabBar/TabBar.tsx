@@ -13,7 +13,7 @@ import classNames from 'classnames';
 export const TabBar = (
   // { isSuperuser = false }: ITabBarProps
 ) => {
-  const baseBtnClass = "flex flex-col items-center py-2 bg-light-gray-white dark:bg-light-gray-7-logo w-[50%]";
+  const baseBtnClass = "flex flex-col items-center py-2 bg-light-gray-white dark:bg-light-gray-7-logo ";
   const activeIconClass = "text-light-brand-green";
   const inactiveIconClass = "text-light-gray-3 dark:text-light-gray-4";
   const activeTextClass = "text-light-brand-green";
@@ -22,20 +22,20 @@ export const TabBar = (
   const renderTabContent = (Icon: React.FC<React.SVGProps<SVGSVGElement>>, label: string, isActive: boolean) => (
     <>
       <Icon className={`w-6 h-6 min-w-6 min-h-6 ${isActive ? activeIconClass : inactiveIconClass}`} />
-      <span className={classNames('mt-1 font-label-emphasized', isActive ? activeTextClass : inactiveTextClass)}>
+      <span className={classNames('mb-1 font-label-emphasized w-21.75 min-w-21.75', isActive ? activeTextClass : inactiveTextClass)}>
         {label}
       </span>
     </>
   );
 
   return (
-    <div className="relative w-full max-w-125 self-center">
-      <div className="flex justify-around fixed bottom-0 w-full max-w-125 h-17.5 border-t-[0.33px] border-light-gray-3 dark:border-light-gray-6">
+    <div className="w-full max-w-125 h-12.5 min-h-12.5 self-center px-4 bottom-0 fixed bg-light-gray-white border-t-[0.33px] border-light-gray-3 dark:border-light-gray-6">
+      <div className="flex justify-between w-full">
         
         {/* 1. Главная */}
         <NavLink
           to="/curator/main"
-          className={() => classNames(baseBtnClass, 'pl-4.75')}
+          className={() => classNames(baseBtnClass)}
         >
           {({ isActive }) => renderTabContent(HomeIcon, 'Главная', isActive)}
         </NavLink>
@@ -49,7 +49,7 @@ export const TabBar = (
 
         <NavLink
           to="/curator/request"
-          className={() => classNames(baseBtnClass, 'pr-4 pt-1.75')}
+          className={() => classNames(baseBtnClass)}
         >
           {({ isActive }) => renderTabContent(RequestIcon, 'Заявки', isActive)}
         </NavLink>

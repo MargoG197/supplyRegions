@@ -95,36 +95,42 @@
   font-size: 18px;
   line-height: 24px;
   font-weight: 600;
+  @apply tracking-tight;
 }
 @utility font-bodytext-regular {
   font-family: 'TikTokSans';
   font-size: 17px;
   line-height: 25px;
   font-weight: 400;
+   @apply tracking-tight;
 }
 @utility font-bodytext-m {
   font-family: 'TikTokSans';
   font-size: 17px;
   line-height: 25px;
   font-weight: 500;
+   @apply tracking-tight;
 }
 @utility font-caption-regular {
   font-family: 'TikTokSans';
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;
+   @apply tracking-tight;
 }
 @utility font-label-regular {
   font-family: 'TikTokSans';
   font-size: 12px;
   line-height: 16px;
   font-weight: 400;
+   @apply tracking-tight;
 }
 @utility font-label-emphasized {
   font-family: 'TikTokSans';
   font-size: 12px;
   line-height: 16px;
   font-weight: 300;
+   @apply tracking-tight;
 }
 
 /* ============================================================
@@ -132,16 +138,16 @@
    Переведены на @utility, чтобы точно работали в v4.
    ============================================================ */
 @utility btn-B-GreenDefault {
-  @apply w-89.5 h-12.75 min-h-12.75 rounded-xs font-bodytext-m bg-light-brand-green text-light-gray-white disabled:bg-light-gray-3 dark:disabled:bg-light-gray-5;
+  @apply w-89.5 h-10.75 min-h-10.75 rounded-xs font-bodytext-m bg-light-brand-green text-light-gray-white disabled:bg-light-gray-3 dark:disabled:bg-light-gray-5;
 }
 @utility btn-B-GreenInactive {
-  @apply w-89.5 h-12.75 min-h-12.75 rounded-xs font-bodytext-regular bg-light-gray-3 text-light-gray-white dark:bg-light-gray-5;
+  @apply w-89.5 h-10.75 min-h-102.75 rounded-xs font-bodytext-regular bg-light-gray-3 text-light-gray-white dark:bg-light-gray-5;
 }
 @utility btn-B-WhiteDefault {
-  @apply w-89.5 h-12.75 min-h-12.75 rounded-xs font-bodytext-regular border border-light-brand-green bg-light-gray-white text-light-gray-black dark:bg-light-gray-6 dark:text-light-gray-white;
+  @apply w-89.5 h-10.75 min-h-10.75 rounded-xs font-bodytext-regular border border-light-brand-green bg-light-gray-white text-light-gray-black dark:bg-light-gray-6 dark:text-light-gray-white;
 }
 @utility btn-B-GrayDefault {
-  @apply w-89.5 h-12.75 min-h-12.75 rounded-xs font-bodytext-m bg-light-gray-1 text-light-gray-black;
+  @apply w-89.5 h-10.75 min-h-10.75 rounded-xs font-bodytext-m bg-light-gray-1 text-light-gray-black;
 }
 @utility btn-M-GreenDefault {
   @apply w-39.75 h-10.75 min-h-10.75 rounded-xs font-bodytext-m bg-light-brand-green text-light-gray-white;
