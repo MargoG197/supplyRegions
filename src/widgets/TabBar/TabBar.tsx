@@ -13,7 +13,7 @@ import classNames from 'classnames';
 export const TabBar = (
   // { isSuperuser = false }: ITabBarProps
 ) => {
-  const baseBtnClass = "flex flex-col items-center py-2 bg-light-gray-white dark:bg-light-gray-7-logo ";
+  const baseBtnClass = "flex flex-col items-center pt-1.5 pb-2 bg-light-gray-white dark:bg-light-gray-7-logo ";
   const activeIconClass = "text-light-brand-green";
   const inactiveIconClass = "text-light-gray-3 dark:text-light-gray-4";
   const activeTextClass = "text-light-brand-green";
@@ -21,8 +21,8 @@ export const TabBar = (
 
   const renderTabContent = (Icon: React.FC<React.SVGProps<SVGSVGElement>>, label: string, isActive: boolean) => (
     <>
-      <Icon className={`w-6 h-6 min-w-6 min-h-6 ${isActive ? activeIconClass : inactiveIconClass}`} />
-      <span className={classNames('mb-1 font-label-emphasized w-21.75 min-w-21.75', isActive ? activeTextClass : inactiveTextClass)}>
+      <Icon className={`h-5 min-w-5 min-h-5 ${isActive ? activeIconClass : inactiveIconClass}`} />
+      <span className={classNames('mt-1.25 font-label-emphasized w-21.75 min-w-21.75', isActive ? activeTextClass : inactiveTextClass)}>
         {label}
       </span>
     </>

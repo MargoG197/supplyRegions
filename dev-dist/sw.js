@@ -78,7 +78,7 @@ define(['./workbox-d488705a'], (function (workbox) { 'use strict';
    */
   workbox.precacheAndRoute([{
     "url": "/index.html",
-    "revision": "0.v2asrp1ifk"
+    "revision": "0.cn0gmu60dog"
   }], {});
   workbox.cleanupOutdatedCaches();
   workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("/index.html"), {
@@ -86,7 +86,7 @@ define(['./workbox-d488705a'], (function (workbox) { 'use strict';
     denylist: [/^\/api/]
   }));
   workbox.registerRoute(/^https:\/\/api\./i, new workbox.NetworkFirst({
-    "cacheName": "api-cache",
+    "cacheName": "app-cache-1792308587946",
     "networkTimeoutSeconds": 10,
     plugins: [new workbox.ExpirationPlugin({
       maxEntries: 100,

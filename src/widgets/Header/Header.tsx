@@ -23,7 +23,7 @@ export const Header = () => {
           {orgName}
         </h1>
         <p className="font-caption-regular text-light-gray-5 dark:text-light-gray-4 mt-0.5">
-          {userRole} <span >{userCity}</span>
+          {userRole} <span className='ml-1' >{userCity}</span>
         </p>
       </div>
 

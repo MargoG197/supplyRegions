@@ -1,5 +1,8 @@
 /* index.css */
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/inter";
 
 /* ============================================================
    Перенос theme.extend из старого tailwind.config.js
@@ -7,6 +10,9 @@
 @theme {
   /* opacity: { 47: '0.47' } */
   --opacity-47: 0.47;
+  --app-width: 500px; 
+  
+
 
   /* colors.light.* */
   --color-light-gray-white: #FFFFFF;
@@ -20,6 +26,11 @@
   --color-light-gray-black: #111111;
   --color-light-brand-green: #1F7B4E;
   --color-light-error-red: #EB5757;
+  --color-light-bg-warning-secondary: #FFF1C2;
+  --color-light-bg-warning-secondary-hover: #FFE8A3;
+  --color-light-text-warning-default: #522504;
+  --color-light-bg-danger-secondary: #FDD3D0;
+  --color-light-text-danger-default: #900B09;
 
   /* borderRadius.* */
   --radius-xs: 10px;
@@ -72,6 +83,15 @@
     font-weight: 800;
     src: url(./assets/fonts/TikTokSans-ExtraBold.woff) format('woff');
   }
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
 }
 
 /* ============================================================
@@ -83,12 +103,14 @@
   font-size: 28px;
   line-height: 34px;
   font-weight: 800;
+  @apply tracking-tight;
 }
 @utility font-headline-h2 {
   font-family: 'TikTokSans';
   font-size: 20px;
   line-height: 27px;
   font-weight: 700;
+  @apply tracking-tight;
 }
 @utility font-headline-h3 {
   font-family: 'TikTokSans';
@@ -102,35 +124,35 @@
   font-size: 17px;
   line-height: 25px;
   font-weight: 400;
-   @apply tracking-tight;
+  @apply tracking-tight;
 }
 @utility font-bodytext-m {
   font-family: 'TikTokSans';
   font-size: 17px;
   line-height: 25px;
   font-weight: 500;
-   @apply tracking-tight;
+  @apply tracking-tight;
 }
 @utility font-caption-regular {
   font-family: 'TikTokSans';
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;
-   @apply tracking-tight;
+  @apply tracking-tight;
 }
 @utility font-label-regular {
   font-family: 'TikTokSans';
   font-size: 12px;
   line-height: 16px;
   font-weight: 400;
-   @apply tracking-tight;
+  @apply tracking-tight;
 }
 @utility font-label-emphasized {
   font-family: 'TikTokSans';
   font-size: 12px;
   line-height: 16px;
   font-weight: 300;
-   @apply tracking-tight;
+  @apply tracking-tight;
 }
 
 /* ============================================================
@@ -138,16 +160,16 @@
    Переведены на @utility, чтобы точно работали в v4.
    ============================================================ */
 @utility btn-B-GreenDefault {
-  @apply w-89.5 h-10.75 min-h-10.75 rounded-xs font-bodytext-m bg-light-brand-green text-light-gray-white disabled:bg-light-gray-3 dark:disabled:bg-light-gray-5;
+  @apply w-full max-w-89.5 h-10.75 min-h-10.75 rounded-xs font-bodytext-m bg-light-brand-green text-light-gray-white disabled:bg-light-gray-3 dark:disabled:bg-light-gray-5;
 }
 @utility btn-B-GreenInactive {
-  @apply w-89.5 h-10.75 min-h-102.75 rounded-xs font-bodytext-regular bg-light-gray-3 text-light-gray-white dark:bg-light-gray-5;
+  @apply w-full max-w-89.5 h-10.75 min-h-10.75 rounded-xs font-bodytext-regular bg-light-gray-3 text-light-gray-white dark:bg-light-gray-5;
 }
 @utility btn-B-WhiteDefault {
-  @apply w-89.5 h-10.75 min-h-10.75 rounded-xs font-bodytext-regular border border-light-brand-green bg-light-gray-white text-light-gray-black dark:bg-light-gray-6 dark:text-light-gray-white;
+  @apply w-full max-w-89.5 h-10.75 min-h-10.75 rounded-xs font-bodytext-regular border border-light-brand-green bg-light-gray-white text-light-gray-black dark:bg-light-gray-6 dark:text-light-gray-white;
 }
 @utility btn-B-GrayDefault {
-  @apply w-89.5 h-10.75 min-h-10.75 rounded-xs font-bodytext-m bg-light-gray-1 text-light-gray-black;
+  @apply w-full max-w-89.5 h-10.75 min-h-10.75 rounded-xs font-bodytext-m bg-light-gray-1 text-light-gray-black;
 }
 @utility btn-M-GreenDefault {
   @apply w-39.75 h-10.75 min-h-10.75 rounded-xs font-bodytext-m bg-light-brand-green text-light-gray-white;
@@ -188,4 +210,116 @@
   html ::-webkit-scrollbar-thumb {
     @apply bg-none;
   }
+}
+
+@theme inline {
+  --font-heading: var(--font-sans);
+  --font-sans: 'Inter Variable', sans-serif;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
 }

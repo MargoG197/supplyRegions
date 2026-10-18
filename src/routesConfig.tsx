@@ -35,6 +35,6 @@ export const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <div>Страница не найдена</div>,
+    element:  <Navigate to="/curator/main" replace />
   },
 ]);

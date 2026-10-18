@@ -11,17 +11,19 @@ import { ScannerProvider } from './app/providers/ScannerProvider';
 import './index.css';
 
 // Инициализация PWA
-registerSW({
+const updateSW = registerSW({
   onNeedRefresh() {
-    if (confirm('Доступно обновление. Перезагрузить?')) {
-      window.location.reload();
-    }
+      updateSW(true);
   },
-  onOfflineReady() {
-    console.log('✅ Приложение готово к работе офлайн');
-  },
+  immediate: true,
 });
 
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') {
+    // Это заставит Service Worker проверить, нет ли новой версии на сервере
+    updateSW(); 
+  }
+});
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryProvider>

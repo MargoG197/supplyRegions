@@ -35,7 +35,7 @@ export const Button = ({
         // Применяем класс-утилиту, переданный в variant
         variant,
         // Добавляем базовые стили для центрирования контента и плавности
-        'flex items-center justify-center transition-opacity hover:opacity-90 active:scale-[0.98]',
+        'flex items-center justify-center transition-opacity hover:opacity-90 active:scale-[0.98] self-center',
         className
       )}
       {...props}

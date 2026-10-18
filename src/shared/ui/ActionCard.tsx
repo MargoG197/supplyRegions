@@ -20,7 +20,7 @@ export const ActionCard = ({
     <button
       className={classNames(
         // Базовые стили: серый фон, скругления, отступы, гибкость
-        'flex items-start w-full p-4 gap-2 rounded-xs text-left transition-colors',
+        'flex items-start w-full p-4 gap-3 rounded-xs text-left transition-colors',
         'bg-light-gray-1 dark:bg-light-gray-6',
         'hover:bg-light-gray-2 dark:hover:bg-light-gray-5 active:scale-[0.98]',
         'text-light-gray-black dark:text-light-gray-white',
@@ -29,7 +29,7 @@ export const ActionCard = ({
       {...props}
     >
       {icon && (
-        <div className="shrink-0">
+        <div className="shrink-0 pt-1.25">
           {icon}
         </div>
       )}
