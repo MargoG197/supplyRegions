@@ -1,6 +1,6 @@
 import { ActionCard } from "~/shared/ui/ActionCard";
 import { Card } from "~/shared/ui/Card";
-import PlusIcon from "~assets/icons/plus.svg?react";
+
 import ArrowRightIcon from "~assets/icons/arrowCircle.svg?react";
 import MinusIcon from "~assets/icons/minus.svg?react";
 import { StatusCard } from "~/shared/ui/StatusCard";
@@ -21,11 +21,8 @@ export const MainTab = () => {
       <Card>
         <div className="flex flex-col gap-3 justify-between">
           <div className="flex justify-between gap-3">
-            <WithdrawalReportModal
-              trigger={
-                <ActionCard icon={<PlusIcon />} label="Подать отчет о выемке" />
-              }
-            />
+            <WithdrawalReportModal />
+            
             <ActionCard
               icon={<ArrowRightIcon />}
               label="Подать отчет о раздаче"

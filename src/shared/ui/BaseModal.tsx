@@ -1,51 +1,34 @@
-import { ReactElement, ReactNode } from 'react';
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+import { ReactNode } from 'react';
 import { SubHeader } from './SubHeader'; 
+import { ModalTop } from './Modal/ModalTop';
 
 interface BaseModalProps {
   title: string;
-  trigger: ReactElement;
   children: ReactNode;
-  open?: boolean;
-  onOpenChange?: (open: boolean) => void;
+  open: boolean;
+  onOpenChange: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const BaseModal = ({
   title,
-  trigger,
   children,
   open,
   onOpenChange,
 }: BaseModalProps) => {
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      {trigger && <DialogTrigger render={trigger} />}
-      
-      <DialogContent 
-        className={[
-          "max-w-(--app-width)  w-full p-0 gap-0 bg-light-gray-white dark:bg-light-gray-7-logo [&>button]:hidden",
-          "max-h-screen", 
-          // 2. Делаем окно flex-контейнером
-          "flex flex-col rounded-b-none" 
-        ].join(' ')}
-      >
-        {/* Шапка не должна сжиматься */}
-        <div className="shrink-0">
+    <ModalTop isOpen={open} onOpenChange={onOpenChange}>
+      <div className="w-full max-w-125 bg-light-gray-white dark:bg-light-gray-7-logo h-screen flex flex-col">
+        <div className="shrink-0 w-full">
           <SubHeader 
             title={title} 
             onClose={() => onOpenChange?.(false)} 
           />
         </div>
         
-        {/* Тело. Оно займет всё оставшееся место и будет скроллиться */}
         <div className="p-4 flex flex-col gap-4 overflow-y-auto flex-1 min-h-0">
           {children}
         </div>
-      </DialogContent>
-    </Dialog>
+        </div>
+    </ModalTop>
   );
 };

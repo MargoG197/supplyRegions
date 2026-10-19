@@ -1,5 +1,6 @@
 /* App.css */
 #root {
+  scrollbar-gutter: stable;
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
@@ -101,4 +102,41 @@
   100% {
     box-shadow: 200px 0 rgba(51, 122, 183, 0), 200px 0 rgba(51, 122, 183, 0), 200px 0 rgba(51, 122, 183, 0), 200px 0 rgba(51, 122, 183, 0);
   }
+}
+
+
+/* Появление */
+@keyframes scale-up {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 0.6; }
+}
+
+/* Выезд справа (без прозрачности) */
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* Уезд вправо (без прозрачности) */
+@keyframes slide-out-right {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+
+/* Исчезновение карточки (медленное) */
+@keyframes scale-down {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.95); }
+}
+
+/* Исчезновение фона (быстрое) */
+@keyframes fade-out-fast {
+  from { opacity: 0.6; }
+  to { opacity: 0; }
 }

@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 export type ButtonVariant = 
   | 'btn-B-GreenDefault'
+  | 'btn-B-GreenDefault-lg'
   | 'btn-B-GreenInactive'
   | 'btn-B-WhiteDefault'
   | 'btn-B-GrayDefault'

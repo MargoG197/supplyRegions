@@ -1,5 +1,6 @@
 // WithdrawalReportModal.tsx
 import { formatDateInput } from "@/lib/formatDate";
+import { ActionCard } from "@/shared/ui/ActionCard";
 import { BaseModal } from "@/shared/ui/BaseModal";
 import { Button } from "@/shared/ui/Button";
 import { AttachedFile } from "@/shared/ui/Form/AttachedFile";
@@ -7,15 +8,10 @@ import { AttachedPhoto } from "@/shared/ui/Form/AttachedPhoto";
 import { FormFileUpload } from "@/shared/ui/Form/FormFileUpload";
 import { FormInput } from "@/shared/ui/Form/FormInput";
 import { FormSelect } from "@/shared/ui/Form/FormSelect";
-import { ReactElement, useState } from "react";
+import { useState } from "react";
+import PlusIcon from "~assets/icons/plus.svg?react";
 
-interface WithdrawalReportModalProps {
-  /** Кнопка или элемент, который открывает модалку */
-  trigger: ReactElement;
-}
-export const WithdrawalReportModal = ({
-  trigger,
-}: WithdrawalReportModalProps) => {
+export const WithdrawalReportModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [address, setAddress] = useState("");
   const [date, setDate] = useState("");
@@ -67,13 +63,14 @@ export const WithdrawalReportModal = ({
   };
 
   return (
-    <BaseModal
+    <>
+      <ActionCard onClick={() => setIsOpen(true)}  icon={<PlusIcon />} label="Подать отчет о выемке" />
+       <BaseModal
       title="Подать отчет о выемке"
-      trigger={trigger}
       open={isOpen}
       onOpenChange={setIsOpen}
     >
-      <div className="flex flex-col gap-3 mt-1 mb-13.5">
+      <div className="flex flex-col gap-3 mt-1 mb-13.5 w-full">
         {/* Адрес (Селект) */}
         <FormSelect
           label="Адрес магазина"
@@ -148,19 +145,19 @@ export const WithdrawalReportModal = ({
           поэтому если форма будет длинной, кнопка будет в самом низу. 
           Если нужно, чтобы кнопка была всегда прижата к низу экрана (не скроллилась), 
           скажите — мы вынесем её за пределы div с overflow-y-auto. */}
-      <div>
+      <div className="w-full flex flex-col items-center">
         <Button
           onClick={handleSubmit}
           disabled={true}
-          variant="btn-B-GreenDefault"
+          variant="btn-B-GreenDefault-lg"
         >
           Отправить отчет
         </Button>
         <p className="font-caption-regular text-center text-light-gray-5 mt-4">
-          Редактирование доступно 2 недели после отправки
-          <br />в списке отчетов
+          Редактирование доступно 2 недели после отправки в списке отчетов
         </p>
       </div>
     </BaseModal>
+  </>
   );
 };
