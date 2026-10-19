@@ -8,7 +8,7 @@ const App = () => {
   const { currentUser, isLoading } = useAuthStore();
   const navigate = useNavigate();
   const location = useLocation();
-
+  console.log('App is loaded')
   useEffect(() => {
     if (isLoading) return;
 
