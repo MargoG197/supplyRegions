@@ -111,6 +111,13 @@
   to { opacity: 1; transform: scale(1); }
 }
 
+/* Исчезновение карточки (медленное) */
+@keyframes scale-down {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.95); }
+}
+
+
 @keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 0.6; }
@@ -126,13 +133,6 @@
 @keyframes slide-out-right {
   from { transform: translateX(0); }
   to { transform: translateX(100%); }
-}
-
-
-/* Исчезновение карточки (медленное) */
-@keyframes scale-down {
-  from { opacity: 1; transform: scale(1); }
-  to { opacity: 0; transform: scale(0.95); }
 }
 
 /* Исчезновение фона (быстрое) */

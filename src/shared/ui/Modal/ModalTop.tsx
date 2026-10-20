@@ -2,18 +2,36 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
+type ModalAnimation = 'scale' | 'slide-right' | 'fade';
+
 interface IModalProps {
   isOpen: boolean;
   onOpenChange: React.Dispatch<React.SetStateAction<boolean>>;
   children: React.ReactNode;
+  animation?: ModalAnimation;
 }
 
-export const ModalTop = ({ isOpen, onOpenChange, children }: IModalProps) => {
+export const ModalTop = ({ isOpen, onOpenChange, children, animation = 'slide-right' }: IModalProps) => {
   const container = document.getElementById('modal-portal');
   const [shouldRender, setShouldRender] = useState(isOpen);
 
   const CONTENT_DURATION = 350;
   const OVERLAY_DURATION = 150;
+
+    const animations: Record<ModalAnimation, { in: string; out: string }> = {
+    scale: {
+      in: `scale-up ${CONTENT_DURATION}ms cubic-bezier(0.16, 1, 0.3, 1) forwards`,
+      out: `scale-down ${CONTENT_DURATION}ms ease-in forwards`,
+    },
+    'slide-right': {
+      in: `slide-in-right ${CONTENT_DURATION}ms cubic-bezier(0.16, 1, 0.3, 1) forwards`,
+      out: `slide-out-right ${CONTENT_DURATION}ms ease-in forwards`,
+    },
+    fade: {
+      in: `fade-in ${CONTENT_DURATION}ms ease-out forwards`,
+      out: `fade-out ${CONTENT_DURATION}ms ease-in forwards`,
+    },
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -29,7 +47,8 @@ export const ModalTop = ({ isOpen, onOpenChange, children }: IModalProps) => {
   const handleModalClick = (e: React.MouseEvent) => e.stopPropagation();
 
   if (!shouldRender || !container) return null;
-
+  const currentAnimation = animations[animation];
+  
   return createPortal(
     <div className="fixed inset-0" onClick={handleOverlayClick}>
       
@@ -49,11 +68,12 @@ export const ModalTop = ({ isOpen, onOpenChange, children }: IModalProps) => {
         {/* Обертка для выезда справа */}
         <div
           className="h-full w-full"
-          style={{
-            animation: isOpen
-              ? `slide-in-right ${CONTENT_DURATION}ms cubic-bezier(0.16, 1, 0.3, 1) forwards`
-              : `slide-out-right ${CONTENT_DURATION}ms ease-in forwards`,
-          }}
+          style={{ animation: isOpen ? currentAnimation.in : currentAnimation.out }}
+          // style={{
+          //   animation: isOpen
+          //     ? `scale-up ${CONTENT_DURATION}ms cubic-bezier(0.16, 1, 0.3, 1) forwards`
+          //     : `scale-down ${CONTENT_DURATION}ms ease-in forwards`,
+          // }}
         >
           {children}
         </div>

@@ -47,7 +47,7 @@ export const ChipGroup = ({
         </label>
       )}
       
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-3">
         {options.map((option) => {
           const isSelected = value.includes(option.value);
 
@@ -57,7 +57,7 @@ export const ChipGroup = ({
               type="button"
               onClick={() => handleToggle(option.value)}
               className={classNames(
-                'flex items-center gap-2 px-4 py-1.75 rounded-full transition-colors font-label-regular',
+                'flex items-center gap-1.25 px-3 h-6 rounded-full transition-colors font-label-regular',
                 isSelected
                   ? 'bg-light-brand-green text-white'
                   : 'bg-light-gray-1 dark:bg-light-gray-6 text-light-gray-black dark:text-light-gray-white hover:bg-light-gray-2 dark:hover:bg-light-gray-5' // Неактивный стиль

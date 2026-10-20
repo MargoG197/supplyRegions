@@ -12,6 +12,7 @@ import { SuccessPopup } from "@/shared/ui/SuccessPopup";
 import { useState } from "react";
 import PlusIcon from "~assets/icons/plus.svg?react";
 import { WriteOffReportModal } from "./WriteOff/WriteOffReportModal";
+import { mergePhotos } from "@/shared/utils/helperFunctions";
 
 export const WithdrawalReportModal = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -67,6 +68,9 @@ export const WithdrawalReportModal = () => {
     setIsSuccessOpen(true);
   };
 
+    const handleFilesSelect = (files: File[]) => {
+      setPhotos((prev) => mergePhotos(prev, files));
+    };
   return (
     <>
       <ActionCard
@@ -135,7 +139,7 @@ export const WithdrawalReportModal = () => {
             }
             buttonText="Прикрепить фото"
             mode="image"
-            onFilesSelect={(files) => setPhotos(files)}
+            onFilesSelect={handleFilesSelect}
           />
           {photos.length > 0 && (
             <div className="flex gap-2 overflow-x-auto pb-2">

@@ -8,7 +8,7 @@ interface SuccessPopupProps {
   onOk?: () => void;
   onWriteOff?: () => void;
   shouldAutoClose?: boolean;
-  autoCloseDelay?: number
+  autoCloseDelay?: number;
 }
 
 export const SuccessPopup = ({
@@ -34,7 +34,7 @@ export const SuccessPopup = ({
     }
   }, [isOpen]);
 
- useEffect(() => {
+  useEffect(() => {
     if (isOpen && shouldAutoClose) {
       const timer = setTimeout(() => {
         onOpenChange(false);
@@ -47,19 +47,19 @@ export const SuccessPopup = ({
   const hasButtons = Boolean(onOk || onWriteOff);
 
   return (
-    <ModalTop isOpen={isOpen} onOpenChange={onOpenChange}>
-      <div className="w-full max-w-125 bg-light-gray-white dark:bg-light-gray-7-logo flex flex-col justify-between h-screen self-center mx-auto">
+    <ModalTop isOpen={isOpen} onOpenChange={onOpenChange} animation="scale">
+      <div className="w-full max-w-125 bg-light-gray-white dark:bg-light-gray-7-logo flex flex-col gap-53.5 h-screen self-center mx-auto">
         {/* Верхняя часть с контентом */}
-        <div className="w-full flex-1 flex flex-col items-center justify-center gap-8">
+        <div className="w-full flex flex-col items-center pt-35.5 gap-8">
           {/* Заголовок */}
           {title && (
-            <h2 className="font-heading-h3 text-light-gray-black dark:text-light-gray-white text-center">
+            <h2 className="font-headline-h2 text-light-gray-5 dark:text-light-gray-white text-center">
               {title}
             </h2>
           )}
           {/* Зеленый квадрат с галочкой */}
           <div
-            className="w-[200px] h-[200px] bg-[#1D8A56] rounded-[50px] flex items-center justify-center shadow-lg"
+            className="w-[213.33px] h-[213.33px] bg-[#1D8A56] rounded-[54px] flex items-center justify-center shadow-lg"
             style={{
               animation: isOpen
                 ? "pop-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards"
@@ -68,22 +68,31 @@ export const SuccessPopup = ({
           >
             {/* SVG галочка. Обратите внимание на strokeDasharray и strokeDashoffset */}
             <svg
-              width="100"
-              height="100"
-              viewBox="0 0 100 100"
+              width="214"
+              height="214"
+              viewBox="0 0 214 214"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
+              {/* Зелёный квадрат без вырезанной галочки */}
+              <rect
+                width="213.333"
+                height="213.333"
+                rx="54"
+                fill="#1F7B4E"
+              />
+
+              {/* Stroke-галочка, повторяющая внутренний контур оригинала */}
               <path
-                d="M20 50 L45 75 L85 25"
+                d="M63 110 L95 140 L151 76"
                 stroke="white"
-                strokeWidth="12"
+                strokeWidth="22"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeDasharray="100"
-                strokeDashoffset={shouldAnimate ? 0 : 100}
+                strokeDasharray="160"
+                strokeDashoffset={shouldAnimate ? 0 : 160}
                 style={{
-                  transition: "stroke-dashoffset 0.6s ease-in-out 0.2s", // Задержка 0.2с, чтобы квадрат чуть появился
+                  transition: "stroke-dashoffset 0.6s ease-in-out 0.2s",
                 }}
               />
             </svg>
@@ -91,21 +100,15 @@ export const SuccessPopup = ({
         </div>
 
         {/* Нижняя часть с кнопками */}
-         {hasButtons && (
-          <div className="flex px-4 justify-center gap-4 pb-6">
+        {hasButtons && (
+          <div className="flex w-full justify-center gap-2">
             {onOk && (
-              <button
-                onClick={onOk}
-                className="btn-M-WhiteDefault"
-              >
+              <button onClick={onOk} className="btn-M-WhiteDefault-w">
                 Ок
               </button>
             )}
             {onWriteOff && (
-              <button
-                onClick={onWriteOff}
-                className="btn-M-RedDefault"
-              >
+              <button onClick={onWriteOff} className="btn-M-RedDefault-w">
                 Есть списание
               </button>
             )}

@@ -8,6 +8,8 @@ import { FormInput } from "@/shared/ui/Form/FormInput";
 import { SuccessPopup } from "@/shared/ui/SuccessPopup";
 import { useState } from "react";
 import { WriteOff } from "./WriteOff";
+import { mergePhotos } from "@/shared/utils/helperFunctions";
+
 interface WriteOffReportModalProps {
   /** Открыто ли окно */
   open: boolean;
@@ -32,6 +34,11 @@ export const WriteOffReportModal = ({
     // setIsOpen(false);
     setIsSuccessOpen(true);
   };
+  
+
+  const handleFilesSelect = (files: File[]) => {
+    setPhotos((prev) => mergePhotos(prev, files));
+  };
 
   return (
     <>
@@ -40,14 +47,14 @@ export const WriteOffReportModal = ({
         open={open}
         onOpenChange={onOpenChange}
       >
-        <div className="flex flex-col gap-3 mt-1 mb-13.5 w-full">
+        <div className="flex flex-col gap-3 mt-1 mb-3.5 w-full">
           {/* Дата (Инпут с маской) */}
           <FormInput
             label="Дата"
             placeholder="ДД.ММ.ГГГГ"
             value={date}
             onChange={(e) => setDate(formatDateInput(e.target.value))}
-            hint="Корректный формат ДД.ММ.ГГГГ"
+            // hint="Корректный формат ДД.ММ.ГГГГ"
             inputMode="numeric"
             mode="date"
           />
@@ -78,13 +85,13 @@ export const WriteOffReportModal = ({
           <FormFileUpload
             label={
               <>
-                Фото (до 3-х штук,{" "}
-                <span className="text-light-error-red">необязательно</span>)
+                Фото (до 3-х штук){" "}
+                {/* <span className="text-light-error-red">необязательно</span>) */}
               </>
             }
             buttonText="Прикрепить фото"
             mode="image"
-            onFilesSelect={(files) => setPhotos(files)}
+            onFilesSelect={handleFilesSelect}
           />
           {photos.length > 0 && (
             <div className="flex gap-2 overflow-x-auto pb-2">
