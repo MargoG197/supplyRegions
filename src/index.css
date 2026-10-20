@@ -183,6 +183,9 @@
 @utility btn-M-WhiteDefault {
   @apply w-39.75 h-10.75 min-h-10.75 rounded-xs border border-light-brand-green font-bodytext-regular bg-light-gray-white text-light-gray-black dark:font-bodytext-m dark:bg-light-gray-6 dark:text-light-gray-white;
 }
+@utility btn-M-RedDefault {
+  @apply w-39.75 h-10.75 min-h-10.75 rounded-xs bg-light-error-red font-bodytext-regular text-light-gray-white dark:font-bodytext-m dark:bg-light-gray-6 dark:text-light-gray-white;
+}
 @utility btn-M-WhiteClicked {
   @apply w-39.75 h-10.75 min-h-10.75 rounded-xs font-bodytext-m bg-light-gray-1 text-light-gray-black;
 }

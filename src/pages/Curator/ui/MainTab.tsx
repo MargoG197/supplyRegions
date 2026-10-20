@@ -2,11 +2,11 @@ import { ActionCard } from "~/shared/ui/ActionCard";
 import { Card } from "~/shared/ui/Card";
 
 import ArrowRightIcon from "~assets/icons/arrowCircle.svg?react";
-import MinusIcon from "~assets/icons/minus.svg?react";
 import { StatusCard } from "~/shared/ui/StatusCard";
 import { Button } from "~/shared/ui/Button";
 import { ReportSummary } from "~/widgets/Summary/ReportSummary";
 import { WithdrawalReportModal } from "~/widgets/Reports/WithdrawalReportModal";
+import { WriteOffActionCard } from "@/widgets/Reports/WriteOffActionCard";
 
 export const MainTab = () => {
   return (
@@ -22,14 +22,12 @@ export const MainTab = () => {
         <div className="flex flex-col gap-3 justify-between">
           <div className="flex justify-between gap-3">
             <WithdrawalReportModal />
-            
             <ActionCard
               icon={<ArrowRightIcon />}
               label="Подать отчет о раздаче"
             />
           </div>
-
-          <ActionCard icon={<MinusIcon />} label="Подать отчет о списании" />
+          <WriteOffActionCard />
         </div>
       </Card>
       <Card title="Заявки нуждающихся" rounded="none">
