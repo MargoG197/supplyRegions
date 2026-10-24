@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import classNames from 'classnames';
+import { ReactNode } from "react";
+import { Chip } from "./Chip";
 
 export interface ChipOption {
   value: string;
@@ -46,33 +46,40 @@ export const ChipGroup = ({
           {label}
         </label>
       )}
-      
+
       <div className="flex flex-wrap gap-3">
         {options.map((option) => {
           const isSelected = value.includes(option.value);
 
           return (
-            <button
+            <Chip
               key={option.value}
-              type="button"
+              label={option.label}
+              icon={option.icon}
+              selected={isSelected}
               onClick={() => handleToggle(option.value)}
-              className={classNames(
-                'flex items-center gap-1.25 px-3 h-6 rounded-full transition-colors font-label-regular',
-                isSelected
-                  ? 'bg-light-brand-green text-white'
-                  : 'bg-light-gray-1 dark:bg-light-gray-6 text-light-gray-black dark:text-light-gray-white hover:bg-light-gray-2 dark:hover:bg-light-gray-5' // Неактивный стиль
-              )}
-            >
-              {option.icon && (
-                <span className={classNames(
-                  'shrink-0',
-                  isSelected ? 'text-white' : 'text-light-gray-5 dark:text-light-gray-4'
-                )}>
-                  {option.icon}
-                </span>
-              )}
-              <span>{option.label}</span>
-            </button>
+            />
+            // <button
+            //   key={option.value}
+            //   type="button"
+            //   onClick={() => handleToggle(option.value)}
+            //   className={classNames(
+            //     'flex items-center gap-1.25 px-3 h-6 rounded-full transition-colors font-label-regular',
+            //     isSelected
+            //       ? 'bg-light-brand-green text-white'
+            //       : 'bg-light-gray-1 dark:bg-light-gray-6 text-light-gray-black dark:text-light-gray-white hover:bg-light-gray-2 dark:hover:bg-light-gray-5' // Неактивный стиль
+            //   )}
+            // >
+            //   {option.icon && (
+            //     <span className={classNames(
+            //       'shrink-0',
+            //       isSelected ? 'text-white' : 'text-light-gray-5 dark:text-light-gray-4'
+            //     )}>
+            //       {option.icon}
+            //     </span>
+            //   )}
+            //   <span>{option.label}</span>
+            // </button>
           );
         })}
       </div>

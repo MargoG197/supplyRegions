@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { SubHeader } from './SubHeader'; 
-import { ModalTop } from './Modal/ModalTop';
+import { Modal } from './Modal/Modal';
 
 interface BaseModalProps {
   title: string;
@@ -16,8 +16,8 @@ export const BaseModal = ({
   onOpenChange,
 }: BaseModalProps) => {
   return (
-    <ModalTop isOpen={open} onOpenChange={onOpenChange}>
-      <div className="w-full max-w-125 bg-light-gray-white mx-auto dark:bg-light-gray-7-logo h-screen flex flex-col">
+    <Modal isOpen={open} onOpenChange={onOpenChange}>
+      <div className="w-full max-w-125 bg-light-gray-1 mx-auto dark:bg-light-gray-7-logo h-screen flex flex-col">
         <div className="shrink-0 w-full">
           <SubHeader 
             title={title} 
@@ -25,10 +25,10 @@ export const BaseModal = ({
           />
         </div>
         
-        <div className="p-4 flex flex-col gap-4 overflow-y-auto flex-1 min-h-0">
+        <div className="mt-1 flex flex-col overflow-y-auto flex-1 min-h-0">
           {children}
         </div>
         </div>
-    </ModalTop>
+    </Modal>
   );
 };

@@ -47,7 +47,8 @@ export const WriteOffReportModal = ({
         open={open}
         onOpenChange={onOpenChange}
       >
-        <div className="flex flex-col gap-3 mt-1 mb-3.5 w-full">
+        <div className="bg-light-gray-white p-4 flex flex-col gap-4 overflow-y-auto flex-1 min-h-0">
+           <div className="flex flex-col gap-3 mt-1 mb-3.5 w-full">
           {/* Дата (Инпут с маской) */}
           <FormInput
             label="Дата"
@@ -118,6 +119,8 @@ export const WriteOffReportModal = ({
             Редактирование доступно 2 недели после отправки в списке отчетов
           </p>
         </div>
+        </div>
+       
       </BaseModal>
       <SuccessPopup
         title="Отчёт о списании подан"

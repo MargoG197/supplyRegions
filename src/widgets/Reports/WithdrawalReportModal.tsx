@@ -83,7 +83,8 @@ export const WithdrawalReportModal = () => {
         open={isOpen}
         onOpenChange={setIsOpen}
       >
-        <div className="flex flex-col gap-3 mt-1 mb-13.5 w-full">
+        <div className="bg-light-gray-white p-4 flex flex-col gap-4 overflow-y-auto flex-1 min-h-0">
+           <div className="flex flex-col gap-3 mt-1 mb-13.5 w-full">
           {/* Адрес (Селект) */}
           <FormSelect
             label="Адрес магазина"
@@ -166,6 +167,8 @@ export const WithdrawalReportModal = () => {
             Редактирование доступно 2 недели после отправки в списке отчетов
           </p>
         </div>
+        </div>
+       
       </BaseModal>
       <SuccessPopup
         title="Отчёт о выемке подан"

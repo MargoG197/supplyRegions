@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ModalTop } from "./Modal/ModalTop";
+import { Modal } from "./Modal/Modal";
 
 interface SuccessPopupProps {
   isOpen: boolean;
@@ -47,7 +47,7 @@ export const SuccessPopup = ({
   const hasButtons = Boolean(onOk || onWriteOff);
 
   return (
-    <ModalTop isOpen={isOpen} onOpenChange={onOpenChange} animation="scale">
+    <Modal isOpen={isOpen} onOpenChange={onOpenChange} animation="scale">
       <div className="w-full max-w-125 bg-light-gray-white dark:bg-light-gray-7-logo flex flex-col gap-53.5 h-screen self-center mx-auto">
         {/* Верхняя часть с контентом */}
         <div className="w-full flex flex-col items-center pt-35.5 gap-8">
@@ -115,6 +115,6 @@ export const SuccessPopup = ({
           </div>
         )}
       </div>
-    </ModalTop>
+    </Modal>
   );
 };

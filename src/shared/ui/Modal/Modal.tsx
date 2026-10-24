@@ -1,175 +1,138 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import classNames from 'classnames';
+
+type ModalAnimation = 'scale' | 'slide-right' | 'fade' | 'slide-up' | 'slide-down';
+type ModalPosition = 'center' | 'top' | 'bottom';
 
 interface IModalProps {
   isOpen: boolean;
   onOpenChange: React.Dispatch<React.SetStateAction<boolean>>;
-  onOpenChangeComment?: () => void;
   children: React.ReactNode;
+  animation?: ModalAnimation;
+  /** Позиция модального окна (по умолчанию center) */
+  position?: ModalPosition;
+  /** Блокировать ли скролл страницы (по умолчанию true) */
+  lockScroll?: boolean;
+  /** Дополнительные классы для обертки контента */
+  className?: string;
 }
 
-export const Modal: React.FC<IModalProps> = ({ 
+export const Modal = ({ 
   isOpen, 
   onOpenChange, 
-  onOpenChangeComment, 
-  children 
-}) => {
-  const scrollPosition = useRef(0);
+  children, 
+  animation = 'slide-right',
+  position = 'top',
+  lockScroll = true,
+  className
+}: IModalProps) => {
   const container = document.getElementById('modal-portal');
-  useEffect(() => {
-      if (isOpen) {
-        // Сохраняем текущую позицию скролла
-        scrollPosition.current = window.scrollY;
-        
-        // Блокируем скролл
-        document.body.style.overflow = 'hidden';
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${scrollPosition.current}px`;
-        document.body.style.width = '100%';
-      } else {
-        // Восстанавливаем скролл
-        document.body.style.overflow = '';
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        
-        // Возвращаем скролл на сохраненную позицию
-        window.scrollTo(0, scrollPosition.current);
-      }
-  
-      return () => {
-        // Очистка при размонтировании
-        document.body.style.overflow = '';
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-      };
-    }, [isOpen]);
+  const [shouldRender, setShouldRender] = useState(isOpen);
 
-   
+  const CONTENT_DURATION = 350;
+  const OVERLAY_DURATION = 150;
 
+  // Твои анимации + добавил для bottom/top
+  const animations: Record<ModalAnimation, { in: string; out: string }> = {
+    scale: {
+      in: `scale-up ${CONTENT_DURATION}ms cubic-bezier(0.16, 1, 0.3, 1) forwards`,
+      out: `scale-down ${CONTENT_DURATION}ms ease-in forwards`,
+    },
+    'slide-right': {
+      in: `slide-in-right ${CONTENT_DURATION}ms cubic-bezier(0.16, 1, 0.3, 1) forwards`,
+      out: `slide-out-right ${CONTENT_DURATION}ms ease-in forwards`,
+    },
+    'slide-up': {
+      in: `slide-in-up ${CONTENT_DURATION}ms cubic-bezier(0.16, 1, 0.3, 1) forwards`,
+      out: `slide-out-down ${CONTENT_DURATION}ms ease-in forwards`,
+    },
+    'slide-down': {
+      in: `slide-in-down ${CONTENT_DURATION}ms cubic-bezier(0.16, 1, 0.3, 1) forwards`,
+      out: `slide-out-up ${CONTENT_DURATION}ms ease-in forwards`,
+    },
+    fade: {
+      in: `fade-in ${CONTENT_DURATION}ms ease-out forwards`,
+      out: `fade-out ${CONTENT_DURATION}ms ease-in forwards`,
+    },
+  };
 
-  // Управление классом для body
+  // Логика твоего shouldRender
   useEffect(() => {
     if (isOpen) {
-      document.getElementById('body')?.classList.add('popup-open');
+      const timer = setTimeout(() => setShouldRender(true), 0);
+      return () => clearTimeout(timer);
     } else {
-      document.getElementById('body')?.classList.remove('popup-open');
+      const timer = setTimeout(() => setShouldRender(false), CONTENT_DURATION);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
+
+  // Опциональная блокировка скролла (из второй модалки)
+  useEffect(() => {
+    if (!lockScroll) return;
+
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
     }
 
     return () => {
-      document.getElementById('body')?.classList.remove('popup-open');
+      document.body.style.overflow = '';
     };
-  }, [isOpen]);
+  }, [isOpen, lockScroll]);
 
-  if (!isOpen || !container) return null;
+  const handleOverlayClick = () => onOpenChange(false);
+  const handleModalClick = (e: React.MouseEvent) => e.stopPropagation();
 
-  const ModalContent = (
-    <div 
-      onClick={() => { 
-        onOpenChange(false); 
-        onOpenChangeComment?.(); 
-      }}
-    >
-      <div 
-        onClick={() => { 
-          onOpenChange(false); 
-          onOpenChangeComment?.(); 
+  if (!shouldRender || !container) return null;
+  
+  // Выбираем анимацию (если передали slide-up для bottom — отлично)
+  const currentAnimation = animations[animation];
+
+  // Классы для позиционирования
+  const positionClasses: Record<ModalPosition, string> = {
+    center: 'items-center justify-center p-4',
+    top: 'items-start justify-center',
+    bottom: 'items-end justify-center',
+  };
+
+  return createPortal(
+    <div className="fixed inset-0" onClick={handleOverlayClick}>
+      
+      {/* Фон (Оверлей) */}
+      <div
+        className="fixed inset-0 bg-black opacity-60"
+        style={{
+          animation: isOpen
+            ? `fade-in ${CONTENT_DURATION}ms ease-out forwards`
+            : `fade-out-fast ${OVERLAY_DURATION}ms ease-in forwards`,
         }}
+      />
+      
+      {/* Контейнер для позиционирования */}
+      <div
+        className={classNames(
+          "absolute inset-0 flex w-full h-full overflow-y-auto",
+          positionClasses[position]
+        )}
+        onClick={handleModalClick}
       >
-        <div className="fixed inset-0 bg-black opacity-60" />
-        <div 
-          className="text-left fixed inset-0 flex items-end justify-center" 
-          onClick={() => onOpenChange(false)}
+        {/* Обертка для анимации контента */}
+        <div
+          // Если position === 'bottom' или 'top', лучше чтобы ширина была 100%
+          className={classNames(
+            "w-full max-h-full overflow-y-auto",
+            position === 'center' && "h-auto",
+            className
+          )}
+          style={{ animation: isOpen ? currentAnimation.in : currentAnimation.out }}
         >
           {children}
         </div>
-      </div>ы
-    </div>
+      </div>
+    </div>,
+    container
   );
-
-  return createPortal(ModalContent, container);
 };
-
-// import React, { useEffect, useRef } from 'react';
-// import { createPortal } from 'react-dom';
-
-// interface IModalProps {
-//   isOpen: boolean;
-//   onOpenChange: React.Dispatch<React.SetStateAction<boolean>>;
-//   onOpenChangeComment?: () => void;
-//   children: React.ReactNode;
-//   noColor?: boolean;
-//   zIndex?: boolean;
-// }
-
-// export const Modal: React.FC<IModalProps> = ({
-//   isOpen,
-//   onOpenChange,
-//   onOpenChangeComment,
-//   children,
-//   noColor = false,
-//   zIndex = false,
-// }) => {
-//   const scrollPosition = useRef(0);
-
-//   // Управление скроллом страницы и классами
-//   useEffect(() => {
-//     const body = document.body;
-    
-//     if (isOpen) {
-//       // Сохраняем позицию скролла
-//       scrollPosition.current = window.scrollY;
-      
-//       // Блокируем скролл
-//       body.classList.add('popup-open');
-//       body.style.position = 'fixed';
-//       body.style.top = `-${scrollPosition.current}px`;
-//       body.style.width = '100%';
-//     } else {
-//       // Восстанавливаем скролл
-//       body.classList.remove('popup-open');
-//       body.style.position = '';
-//       body.style.top = '';
-//       body.style.width = '';
-//       window.scrollTo(0, scrollPosition.current);
-//     }
-
-//     return () => {
-//       // Очистка при размонтировании
-//       body.classList.remove('popup-open');
-//       body.style.position = '';
-//       body.style.top = '';
-//       body.style.width = '';
-//     };
-//   }, [isOpen]);
-
-//   const handleClose = () => {
-//     onOpenChange(false);
-//     onOpenChangeComment?.();
-//   };
-
-//   const handleModalClick = (e: React.MouseEvent) => {
-//     e.stopPropagation();
-//   };
-
-//   if (!isOpen) return null;
-
-//   const overlayClass = noColor 
-//     ? "text-left fixed inset-0" 
-//     : "fixed inset-0 bg-black opacity-30";
-
-//   const modalClass = noColor
-//     ? `text-left ${zIndex ? 'z-[51]' : 'z-[2]'} fixed inset-0 flex items-end justify-center`
-//     : `text-left ${zIndex ? 'z-[51]' : 'z-[2]'} fixed inset-0 flex items-end backdrop-blur-[2px] justify-center`;
-
-//   return createPortal(
-//     <div className="fixed inset-0" onClick={handleClose}>
-//       <div className={overlayClass} />
-//       <div className={modalClass} onClick={handleModalClick}>
-//         {children}
-//       </div>
-//     </div>,
-//     document.body
-//   );
-// };
