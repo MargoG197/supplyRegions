@@ -64,7 +64,10 @@ export const FormDateRange = ({
   }, [isOpen]); // Добавили isOpen в зависимости
 
   return (
-    <div className="flex flex-col gap-1.5 w-full relative" ref={containerRef}>
+    <div
+      className="flex flex-col gap-1.5 pt-0.5 w-full relative"
+      ref={containerRef}
+    >
       {label && <label className={inputLabelClasses}>{label}</label>}
 
       <div className="relative w-full">
@@ -76,7 +79,7 @@ export const FormDateRange = ({
             e.stopPropagation();
             setIsOpen(true);
           }}
-          placeholder="ДД.ММ.ГГГГ — ДД.ММ.ГГГГ"
+          placeholder="ДД.ММ.ГГГГ - ДД.ММ.ГГГГ"
           className={classNames(
             inputBaseClasses,
             "pr-10 cursor-pointer",
@@ -98,7 +101,7 @@ export const FormDateRange = ({
         animation="scale"
       >
         <div
-          className="max-w-125 mx-auto h-fit w-fit bg-light-gray-white dark:bg-light-gray-7-logo border border-light-gray-2 rounded-lg shadow-lg"
+          className="max-w-125 mx-auto h-fit w-full bg-light-gray-white dark:bg-light-gray-7-logo border border-light-gray-2 rounded-lg"
           onClick={(e) => e.stopPropagation()}
         >
           <DayPicker
@@ -121,7 +124,7 @@ export const FormDateRange = ({
                   type="button"
                   onClick={onClick}
                   disabled={disabled}
-                  className="absolute left-2 top-3.5 z-10 flex items-center justify-center bg-transparent hover:opacity-70 transition-opacity disabled:opacity-30 cursor-pointer"
+                  className="absolute left-6 top-2 z-10 flex items-center justify-center bg-transparent hover:opacity-70 transition-opacity disabled:opacity-30 cursor-pointer"
                 >
                   <Arrow_left className="w-10 h-10" /> {/* Твой размер */}
                 </button>
@@ -131,7 +134,7 @@ export const FormDateRange = ({
                   type="button"
                   onClick={onClick}
                   disabled={disabled}
-                  className="absolute right-2 top-3.5 z-10 flex items-center justify-center bg-transparent hover:opacity-70 transition-opacity disabled:opacity-30 cursor-pointer"
+                  className="absolute right-6 top-2 z-10 flex items-center justify-center bg-transparent hover:opacity-70 transition-opacity disabled:opacity-30 cursor-pointer"
                 >
                   <Arrow_left className="w-10 h-10 rotate-180" />
                 </button>
@@ -145,30 +148,47 @@ export const FormDateRange = ({
                   month.charAt(0).toUpperCase() + month.slice(1);
                 return `${capitalizedMonth}, ${year}`;
               },
+              formatWeekdayName: (date) => {
+                      const weekday = format(date, "EEEEEE", { locale: ru });
+
+                const capitalized =
+                  weekday.charAt(0).toUpperCase() + weekday.slice(1);
+                const replacements: Record<string, string> = {
+                  Пн: "Пон",
+                  Вт: "Вт",
+                  Ср: "Ср",
+                  Чт: "Чет",
+                  Пт: "Пят",
+                  Сб: "Сб",
+                  Вс: "Вос",
+                };
+
+                return replacements[capitalized] || capitalized;
+              },
             }}
             classNames={{
               root: "relative w-full max-w-125",
-              months: "flex flex-col w-full px-4 pt-4 pb-2",
+              months: "flex flex-col w-full px-7.75 pb-2",
 
               // Хедер (Месяц, Год + Стрелки)
               month_caption:
-                "relative flex items-center justify-center h-10 mb-2 w-full",
+                "relative flex items-center justify-center h-10 mb-2 w-full h-[57px]",
               caption_label:
                 "font-bodytext-m text-light-gray-4 dark:text-light-gray-white text-center",
 
               // Таблица дней (используем grid для равномерного распределения)
               month_grid: "w-full border-collapse",
-              weekdays: "grid grid-cols-7 gap-[10px] w-full",
+              weekdays: "pb-1.75 grid grid-cols-7 gap-[10px] w-full",
               weekday:
-                "text-light-gray-4 font-bodytext-m text-center pb-2 flex items-center justify-center",
-              week: "grid grid-cols-7 gap-[10px] w-full mt-1",
+                "font-label-regular text-center pb-2 flex items-center justify-center",
+              week: "h-[40px] grid grid-cols-7 gap-[10px] w-full mt-1",
 
               // Ячейки дней (делаем их квадратными)
-              day: "text-center text-sm p-0 relative focus-within:relative focus-within: h-[33px] w-[32px]",
+              day: "text-center font-bodytext-m p-0 relative focus-within:relative focus-within: h-[33px] w-[32px]",
 
               // Кнопка внутри ячейки (круглая, но без фона для обычных дней)
               day_button:
-                "h-[33px] w-[32px] p-0 font-normal rounded-full flex items-center justify-center transition-colors hover:bg-light-gray-2 dark:hover:bg-light-gray-6",
+                "h-[33px] w-[32px] p-0 font-bodytext-m rounded-full flex items-center justify-center transition-colors hover:bg-light-gray-2 dark:hover:bg-light-gray-6",
 
               range_start: "bg-light-brand-green text-white rounded-full",
               range_end: "bg-light-brand-green text-white rounded-full",
@@ -189,7 +209,7 @@ export const FormDateRange = ({
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="w-full py-2 text-light-brand-green font-bodytext-regular hover:opacity-80 transition-opacity"
+                  className="w-full py-2 h-11.25 text-light-brand-green font-bodytext-regular hover:opacity-80 transition-opacity"
                 >
                   Ок
                 </button>

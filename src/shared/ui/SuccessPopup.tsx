@@ -101,14 +101,14 @@ export const SuccessPopup = ({
 
         {/* Нижняя часть с кнопками */}
         {hasButtons && (
-          <div className="flex w-full justify-center gap-2">
+          <div className="flex w-full justify-center gap-2 px-4">
             {onOk && (
-              <button onClick={onOk} className="btn-M-WhiteDefault-w">
+              <button onClick={onOk} className="btn-M-WhiteDefault">
                 Ок
               </button>
             )}
             {onWriteOff && (
-              <button onClick={onWriteOff} className="btn-M-RedDefault-w">
+              <button onClick={onWriteOff} className="btn-M-RedDefault">
                 Есть списание
               </button>
             )}

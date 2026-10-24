@@ -47,7 +47,7 @@ export const WriteOffReportModal = ({
         open={open}
         onOpenChange={onOpenChange}
       >
-        <div className="bg-light-gray-white p-4 flex flex-col gap-4 overflow-y-auto flex-1 min-h-0">
+        <div className="bg-light-gray-white p-4 flex flex-col gap-4 overflow-y-auto h-screen">
            <div className="flex flex-col gap-3 mt-1 mb-3.5 w-full">
           {/* Дата (Инпут с маской) */}
           <FormInput

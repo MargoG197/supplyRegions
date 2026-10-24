@@ -69,9 +69,8 @@ export const Card = ({
   return (
     <div 
       className={classNames(
-        // Убрали p-4 отсюда, чтобы управлять отступами точечно
         'w-full max-w-125 min-h-14.25 mx-auto flex flex-col items-start px-4',
-         ptMap[paddingTop],
+        ptMap[paddingTop],
         pbMap[paddingBottom],
         'bg-light-gray-white dark:bg-light-gray-7-logo',
         {
@@ -85,7 +84,7 @@ export const Card = ({
       {hasHeader && (
         <div 
           className={classNames(
-            'w-full flex items-center justify-between gap-1',
+            'w-full flex items-center justify-between gap-1 ',
             // Отступ снизу до контента
             titleGapMap[titleGap] 
           )}

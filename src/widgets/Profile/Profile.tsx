@@ -1,11 +1,10 @@
 import { ActionCard } from "@/shared/ui/ActionCard";
 import { BaseModal } from "@/shared/ui/BaseModal";
-import { Button } from "@/shared/ui/Button";
 import { Card } from "@/shared/ui/Card";
 import { Chip } from "@/shared/ui/Chip";
 import { useState } from "react";
-import Arrow_left from "~assets/icons/chevron.left.svg?react";
 import { Vacation } from "./Vacation";
+import { CategoriesList } from "./CategoriesList";
 
 export const Profile = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,12 +55,7 @@ export const Profile = () => {
               <p>{curatorEmail}</p>
             </div>
           </Card>
-          <Card title="Отпуск" titleFont="font-bodytext-m" titleGap="none">
-            <p className="text-light-gray-4 font-caption-regular mb-1.5">
-              Уточните даты отпуска
-            </p>
-            <Vacation />
-          </Card>
+          <Vacation/>
           <Card title="Организация" titleFont="font-bodytext-m" titleGap="xs">
             <div className="flex flex-col gap-1 font-bodytext-regular">
               <p>{companyName}</p>
@@ -75,35 +69,7 @@ export const Profile = () => {
               </span>
             </div>
           </Card>
-          <Card
-            title="Категории благополучателей"
-            titleFont="font-bodytext-m"
-            titleGap="xs"
-            headerAction={
-              <button
-                type="button"
-                className="flex items-center gap-1 text-light-gray-5 dark:text-light-gray-4 hover:text-light-gray-black dark:hover:text-light-gray-white transition-colors font-label-regular"
-              >
-                Смотреть все
-                <Arrow_left className="w-7 h-7 rotate-180 text-light-gray-5" />
-              </button>
-            }
-          >
-            <p className="text-light-gray-4 font-caption-regular mb-2.75">
-              Кому помогает ваша организация
-            </p>
-            <div className="flex flex-col gap-2.5 mb-3.5">
-              <Chip label="Многодетные семьи" />
-              <Chip label="Родители-одиночки" />
-              <Chip label="Семьи с детьми-инвалидами" />
-              <p className="text-light-gray-black ml-3 dark:text-light-gray-white font-label-regular">
-                +9 категорий
-              </p>
-            </div>
-            <div className="mb-2 w-full flex justify-center">
-              <Button variant="btn-B-WhiteDefault">Редактировать</Button>
-            </div>
-          </Card>
+          <CategoriesList/>
           <Card>
             <ActionCard label="База знаний" />
           </Card>

@@ -8,6 +8,7 @@ export type ButtonVariant =
   | 'btn-B-WhiteDefault'
   | 'btn-B-GrayDefault'
   | 'btn-M-GreenDefault'
+  | 'btn-M-WhiteDefault-w'
   | 'btn-M-GreenClicked'
   | 'btn-M-WhiteDefault'
   | 'btn-M-WhiteClicked'
