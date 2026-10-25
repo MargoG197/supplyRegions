@@ -114,7 +114,7 @@ export const Modal = ({
       {/* Контейнер для позиционирования */}
       <div
         className={classNames(
-          "absolute inset-0 flex w-full h-full overflow-y-auto",
+          "absolute inset-0 flex w-full h-full",
           positionClasses[position]
         )}
         onClick={handleModalClick}

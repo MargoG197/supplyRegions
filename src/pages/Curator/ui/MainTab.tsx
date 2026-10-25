@@ -23,7 +23,7 @@ export const MainTab = () => {
       <Card>
         <div className="flex flex-col gap-3 justify-between">
           <div className="flex justify-between gap-3">
-            <WithdrawalReportModal />
+            <WithdrawalReportModal mainScreen={true} />
             <ActionCard
               icon={<ArrowRightIcon />}
               label="Подать отчет о раздаче"

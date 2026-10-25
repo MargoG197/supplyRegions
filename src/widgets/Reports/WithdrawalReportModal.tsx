@@ -14,7 +14,12 @@ import PlusIcon from "~assets/icons/plus.svg?react";
 import { WriteOffReportModal } from "./WriteOff/WriteOffReportModal";
 import { mergePhotos } from "@/shared/utils/helperFunctions";
 
-export const WithdrawalReportModal = () => {
+interface WithdrawalReportModalProps {
+  mainScreen: boolean;
+}
+export const WithdrawalReportModal = ({
+  mainScreen,
+}: WithdrawalReportModalProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [address, setAddress] = useState("");
   const [date, setDate] = useState("");
@@ -68,108 +73,114 @@ export const WithdrawalReportModal = () => {
     setIsSuccessOpen(true);
   };
 
-    const handleFilesSelect = (files: File[]) => {
-      setPhotos((prev) => mergePhotos(prev, files));
-    };
+  const handleFilesSelect = (files: File[]) => {
+    setPhotos((prev) => mergePhotos(prev, files));
+  };
   return (
     <>
-      <ActionCard
-        onClick={() => setIsOpen(true)}
-        icon={<PlusIcon />}
-        label="Подать отчет о выемке"
-      />
+      {mainScreen ? (
+        <ActionCard
+          onClick={() => setIsOpen(true)}
+          icon={<PlusIcon />}
+          label="Подать отчет о выемке"
+        />
+      ) : (
+        <Button variant="btn-B-GreenDefault-lg" onClick={() => setIsOpen(true)}>
+          Перейти в отчет по выемке
+        </Button>
+      )}
+
       <BaseModal
         title="Подать отчет о выемке"
         open={isOpen}
         onOpenChange={setIsOpen}
       >
         <div className="bg-light-gray-white p-4 flex flex-col gap-4 overflow-y-auto">
-           <div className="flex flex-col gap-3 mt-1 w-full">
-          {/* Адрес (Селект) */}
-          <FormSelect
-            label="Адрес магазина"
-            placeholder="Выберите магазин"
-            options={mockStores}
-            value={address}
-            onChange={(val) => setAddress(val)}
-            hint={
-              address
-                ? undefined
-                : "Здесь появится номер магазина после выбора адреса"
-            }
-          />
-          {/* Дата (Инпут с маской) */}
-          <FormInput
-            label="Дата"
-            placeholder="ДД.ММ.ГГГГ"
-            value={date}
-            onChange={(e) => setDate(formatDateInput(e.target.value))}
-            hint="Корректный формат ДД.ММ.ГГГГ"
-            inputMode="numeric"
-            mode="date"
-          />
-          {/* Вес (Инпут) */}
-          <FormInput
-            label="Вес, кг"
-            placeholder="0.00"
-            value={weight}
-            onChange={(e) => setWeight(e.target.value)}
-            hint="Например, 26.8"
-            mode="weight"
-            step="0.1"
-          />
-          <FormFileUpload
-            label="Акт (скан, 1 файл)"
-            buttonText="Прикрепить акт"
-            mode="document"
-            onFilesSelect={(files) => setActFile(files[0] || null)}
-          />
-          {actFile && (
-            <AttachedFile
+          <div className="flex flex-col gap-3 mt-1 w-full">
+            {/* Адрес (Селект) */}
+            <FormSelect
+              label="Адрес магазина"
+              placeholder="Выберите магазин"
+              options={mockStores}
+              value={address}
+              onChange={(val) => setAddress(val)}
+              hint={
+                address
+                  ? undefined
+                  : "Здесь появится номер магазина после выбора адреса"
+              }
+            />
+            {/* Дата (Инпут с маской) */}
+            <FormInput
+              label="Дата"
+              placeholder="ДД.ММ.ГГГГ"
+              value={date}
+              onChange={(e) => setDate(formatDateInput(e.target.value))}
+              hint="Корректный формат ДД.ММ.ГГГГ"
+              inputMode="numeric"
+              mode="date"
+            />
+            {/* Вес (Инпут) */}
+            <FormInput
+              label="Вес, кг"
+              placeholder="0.00"
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
+              hint="Например, 26.8"
+              mode="weight"
+              step="0.1"
+            />
+            <FormFileUpload
+              label="Акт (скан, 1 файл)"
+              buttonText="Прикрепить акт"
+              mode="document"
+              onFilesSelect={(files) => setActFile(files[0] || null)}
+            />
+            {actFile && (
+              <AttachedFile
                 fileName={actFile?.name}
                 action="remove"
-              onRemove={() => setActFile(null)}
+                onRemove={() => setActFile(null)}
+              />
+            )}
+            {/* Фото (картинки, включая HEIC с iPhone) */}
+            <FormFileUpload
+              label={
+                <>
+                  Фото (до 3-х штук,{" "}
+                  <span className="text-light-error-red">необязательно</span>)
+                </>
+              }
+              buttonText="Прикрепить фото"
+              mode="image"
+              onFilesSelect={handleFilesSelect}
             />
-          )}
-          {/* Фото (картинки, включая HEIC с iPhone) */}
-          <FormFileUpload
-            label={
-              <>
-                Фото (до 3-х штук,{" "}
-                <span className="text-light-error-red">необязательно</span>)
-              </>
-            }
-            buttonText="Прикрепить фото"
-            mode="image"
-            onFilesSelect={handleFilesSelect}
-          />
-          {photos.length > 0 && (
-            <div className="flex gap-2 overflow-x-auto pb-2">
-              {photos.map((photo, index) => (
-                <AttachedPhoto
-                  key={`${photo.name}-${index}`}
-                  file={photo}
-                  onRemove={() => removePhoto(index)}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-        {/* 2. Кастомный футер. 
+            {photos.length > 0 && (
+              <div className="flex gap-2 overflow-x-auto pb-2">
+                {photos.map((photo, index) => (
+                  <AttachedPhoto
+                    key={`${photo.name}-${index}`}
+                    file={photo}
+                    onRemove={() => removePhoto(index)}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+          {/* 2. Кастомный футер. 
           Он находится внутри скроллируемого контейнера, 
           поэтому если форма будет длинной, кнопка будет в самом низу. 
           Если нужно, чтобы кнопка была всегда прижата к низу экрана (не скроллилась), 
           скажите — мы вынесем её за пределы div с overflow-y-auto. */}
-        <div className="w-full flex flex-col items-center">
-          <Button onClick={handleSubmit} variant="btn-B-GreenDefault-lg">
-            Отправить отчет
-          </Button>
-          <p className="font-caption-regular text-center text-light-gray-5 mt-4">
-            Редактирование доступно 2 недели после отправки в списке отчетов
-          </p>
+          <div className="w-full flex flex-col items-center">
+            <Button onClick={handleSubmit} variant="btn-B-GreenDefault-lg">
+              Отправить отчет
+            </Button>
+            <p className="font-caption-regular text-center text-light-gray-5 mt-4">
+              Редактирование доступно 2 недели после отправки в списке отчетов
+            </p>
+          </div>
         </div>
-        </div>
-       
       </BaseModal>
       <SuccessPopup
         title="Отчёт о выемке подан"
@@ -177,11 +188,17 @@ export const WithdrawalReportModal = () => {
         onOpenChange={setIsSuccessOpen}
         onOk={() => setIsSuccessOpen(false)}
         onWriteOff={() => {
-          setIsSuccessOpen(false)
-          setIsOpenWriteOffReport(true)
+          setIsSuccessOpen(false);
+          setIsOpenWriteOffReport(true);
         }}
       />
-      <WriteOffReportModal open={isOpenWriteOffReport} onOpenChange={()=>{setIsOpen(false); setIsOpenWriteOffReport(false); }} />
+      <WriteOffReportModal
+        open={isOpenWriteOffReport}
+        onOpenChange={() => {
+          setIsOpen(false);
+          setIsOpenWriteOffReport(false);
+        }}
+      />
     </>
   );
 };

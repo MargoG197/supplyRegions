@@ -20,7 +20,7 @@ const mockData: QrCardData[] = [
     id: "2",
     title: "Николая Островского, 146А",
     subtitle: "Лента №104 Томск, магнит",
-    qrValue: "Лента №104 Томск, магнит 1, разрешение на куратор",
+    qrValue: "https://drive.google.com/file/d/14nNAoUWStuMzUBZGXIwapCbvRh_TfIY2/view",
   },
   {
     id: "3",

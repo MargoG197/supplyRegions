@@ -17,7 +17,7 @@ export const BaseModal = ({
 }: BaseModalProps) => {
   return (
     <Modal isOpen={open} onOpenChange={onOpenChange}>
-      <div className="w-full max-w-125 bg-light-gray-1 mx-auto dark:bg-light-gray-7-logo flex flex-col h-fit max-h-screen">
+      <div className="w-full max-w-125 bg-light-gray-1 mx-auto dark:bg-light-gray-7-logo flex flex-col h-dvh max-h-dvh">
         <div className="shrink-0 w-full">
           <SubHeader 
             title={title} 
@@ -25,7 +25,7 @@ export const BaseModal = ({
           />
         </div>
         
-        <div className="mt-1 flex flex-col overflow-y-auto flex-1 min-h-0 h-screen">
+        <div className="mt-1 flex flex-col overflow-y-auto flex-1 min-h-0">
           {children}
         </div>
         </div>
