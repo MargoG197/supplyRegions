@@ -126,7 +126,8 @@ export const WithdrawalReportModal = () => {
           />
           {actFile && (
             <AttachedFile
-              fileName={actFile?.name}
+                fileName={actFile?.name}
+                action="remove"
               onRemove={() => setActFile(null)}
             />
           )}

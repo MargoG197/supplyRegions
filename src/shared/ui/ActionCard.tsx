@@ -6,25 +6,28 @@ interface ActionCardProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: ReactNode;
   /** Иконка (передается как React-компонент, например, из svg?react) */
   icon?: ReactNode;
-  /** Дополнительные классы (например, для кастомного фона) */
+  /** Дополнительные классы для кнопки (например, для кастомного фона) */
   className?: string;
+  labelFontSizeOption?: 'font-bodytext-m' | 'font-bodytext-regular';
+  labelFontTrackingOption?: 'tracking-normal' | 'tracking-wide';
 }
 
 export const ActionCard = ({
   label,
   icon,
   className,
+  labelFontSizeOption = 'font-bodytext-m',
+  labelFontTrackingOption,
   ...props
 }: ActionCardProps) => {
   return (
     <button
       className={classNames(
-        // Базовые стили: серый фон, скругления, отступы, гибкость
         'flex items-start w-full p-4 gap-3 rounded-xs text-left transition-colors',
         'bg-light-gray-1 dark:bg-light-gray-6',
         'hover:bg-light-gray-2 dark:hover:bg-light-gray-5 active:scale-[0.98]',
         'text-light-gray-black dark:text-light-gray-white',
-        className // Позволяет переопределить фон или добавить рамки
+        className
       )}
       {...props}
     >
@@ -34,7 +37,8 @@ export const ActionCard = ({
         </div>
       )}
       
-      <div className="font-bodytext-m">
+      <div className={classNames(
+        labelFontSizeOption, labelFontTrackingOption, 'text-wrap h-auto')} >
         {label}
       </div>
     </button>

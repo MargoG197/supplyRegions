@@ -7,6 +7,8 @@ import { Button } from "~/shared/ui/Button";
 import { ReportSummary } from "~/widgets/Summary/ReportSummary";
 import { WithdrawalReportModal } from "~/widgets/Reports/WithdrawalReportModal";
 import { WriteOffActionCard } from "@/widgets/Reports/WriteOffActionCard";
+import { KnowledgeBase } from "@/widgets/KnowledgeBase/KnowledgeBase";
+import { QrCodes } from "@/widgets/QrCodes/QrCodes";
 
 export const MainTab = () => {
   return (
@@ -61,8 +63,8 @@ export const MainTab = () => {
       </Card>
       <Card>
         <div className="flex justify-between gap-3">
-          <ActionCard label="QR-коды" />
-          <ActionCard label="База знаний" />
+          <QrCodes />
+          <KnowledgeBase/>
         </div>
       </Card>
     </div>

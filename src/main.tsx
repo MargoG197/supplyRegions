@@ -6,7 +6,6 @@ import { RouterProvider } from 'react-router-dom';
 
 import { router } from './routesConfig.tsx';
 import { QueryProvider } from './app/providers';
-import { ScannerProvider } from './app/providers/ScannerProvider';
 
 import './index.css';
 
@@ -28,7 +27,6 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryProvider>
       <RouterProvider router={router} />
-      <ScannerProvider />
     </QueryProvider>
   </StrictMode>
 );

@@ -53,7 +53,7 @@ export const CategoriesList = () => {
         <Card title="Кому помогает ваша организация" titleFont="font-bodytext-m" className="max-h-screen overflow-hidden">
             <div className="flex flex-col gap-2 overflow-scroll max-h-[82vh]">
               {categories.map((category) => (
-                <ActionCard id={category} label={category} className="px-3 py-3.75 min-h-13.75" />
+                <ActionCard id={category} label={category} labelFontSizeOption="font-bodytext-regular" labelFontTrackingOption="tracking-normal" className="px-3 py-3.75" />
               ))}
             </div>
         </Card>

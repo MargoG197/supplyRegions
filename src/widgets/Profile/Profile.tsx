@@ -1,10 +1,10 @@
-import { ActionCard } from "@/shared/ui/ActionCard";
 import { BaseModal } from "@/shared/ui/BaseModal";
 import { Card } from "@/shared/ui/Card";
 import { Chip } from "@/shared/ui/Chip";
 import { useState } from "react";
 import { Vacation } from "./Vacation";
 import { CategoriesList } from "./CategoriesList";
+import { KnowledgeBase } from "../KnowledgeBase/KnowledgeBase";
 
 export const Profile = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -69,10 +69,11 @@ export const Profile = () => {
               </span>
             </div>
           </Card>
-          <CategoriesList/>
+          <CategoriesList />
           <Card>
-            <ActionCard label="База знаний" />
+             <KnowledgeBase/>
           </Card>
+         
         </div>
       </BaseModal>
     </>
