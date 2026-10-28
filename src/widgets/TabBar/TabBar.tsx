@@ -41,21 +41,21 @@ export const TabBar = (
         </NavLink>
 
         <NavLink
-          to="/curator/report"
+          to="/report"
           className={() => classNames(baseBtnClass)}
         >
           {({ isActive }) => renderTabContent(ReportIcon, 'Отчеты', isActive)}
         </NavLink>
 
         <NavLink
-          to="/curator/request"
+          to="/request"
           className={() => classNames(baseBtnClass)}
         >
           {({ isActive }) => renderTabContent(RequestIcon, 'Заявки', isActive)}
         </NavLink>
 
         <NavLink
-          to="/curator/qr"
+          to="/qr"
           className={() => classNames(baseBtnClass)}
         >
           {({ isActive }) => renderTabContent( QrIcon, 'QR-коды', isActive)}

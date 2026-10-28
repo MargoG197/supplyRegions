@@ -1,8 +1,9 @@
 // src/App.tsx
 import { useEffect } from 'react';
-import { Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from './app/stores/authStore';
 import './App.css';
+import { AnimatedOutlet } from './shared/ui/AnimatedOutlet';
 
 const App = () => {
   const { currentUser, isLoading } = useAuthStore();
@@ -32,7 +33,7 @@ const App = () => {
     );
   }
 
-  return <Outlet />;
+  return <AnimatedOutlet />;
 };
 
 export default App;
