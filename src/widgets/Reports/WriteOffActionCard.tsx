@@ -1,7 +1,7 @@
 // WriteOffActionCard.tsx
 import { ActionCard } from "@/shared/ui/ActionCard";
 import { useState } from "react";
-import MinusIcon from "~assets/icons/minus.svg?react";
+import MinusIcon from "~assets/icons/trash.svg?react";
 import { WriteOffReportModal } from "./WriteOff/WriteOffReportModal";
 
 
@@ -11,7 +11,7 @@ export const WriteOffActionCard = () => {
  
   return (
     <>
-     <ActionCard icon={<MinusIcon />} label="Подать отчет о списании" onClick={() => setIsOpen(true)} />
+     <ActionCard icon={<MinusIcon />} label="Подать отчет о списании" onClick={() => setIsOpen(true)} classNameText="self-center" classNameIcon="mt-0.75" />
      <WriteOffReportModal open={isOpen} onOpenChange={()=> setIsOpen(false)} />
     </>
   );

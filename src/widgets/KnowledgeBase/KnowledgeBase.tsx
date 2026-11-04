@@ -19,7 +19,7 @@ export const KnowledgeBase = () => {
 
   return (
     <>
-      <ActionCard label="База знаний" onClick={() => setIsOpen(true)} />
+      <ActionCard label="База знаний" onClick={() => setIsOpen(true)}/>
       <BaseModal title="База знаний" open={isOpen} onOpenChange={setIsOpen}>
         <div className="w-full mx-auto h-lvh bg-light-gray-white">
           {/* Таб-бар */}

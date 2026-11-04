@@ -25,7 +25,7 @@ export const StatusCard = ({
       onClick={onClick}
       className={classNames(
         // Базовые стили: скругления, отступы, гибкость
-        'flex items-center justify-between w-full p-4 rounded-xs transition-colors h-13.75',
+        'flex items-center justify-between w-full py-3 px-4 rounded-xs transition-colors',
         // Если передана функция onClick, делаем курсор-указатель и ховер
         onClick && 'cursor-pointer hover:opacity-90 active:scale-[0.99]',
         // Внешние классы (фон, кастомные цвета)

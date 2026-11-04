@@ -6,16 +6,21 @@ interface ActionCardProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: ReactNode;
   /** Иконка (передается как React-компонент, например, из svg?react) */
   icon?: ReactNode;
+  classNameIcon?: string
   /** Дополнительные классы для кнопки (например, для кастомного фона) */
   className?: string;
+  borderRadius?: string;
   labelFontSizeOption?: 'font-bodytext-m' | 'font-bodytext-regular';
   labelFontTrackingOption?: 'tracking-normal' | 'tracking-wide';
+  classNameText?: string
+  
 }
 
 export const ActionCard = ({
   label,
   icon,
   className,
+  borderRadius = 'rounded-m',
   labelFontSizeOption = 'font-bodytext-m',
   labelFontTrackingOption,
   ...props
@@ -23,22 +28,26 @@ export const ActionCard = ({
   return (
     <button
       className={classNames(
-        'flex items-start w-full p-4 gap-3 rounded-xs text-left transition-colors',
+        'flex w-full py-3.75 px-4 gap-0.5 text-left transition-colors',
         'bg-light-gray-1 dark:bg-light-gray-6',
         'hover:bg-light-gray-2 dark:hover:bg-light-gray-5 active:scale-[0.98]',
         'text-light-gray-black dark:text-light-gray-white',
+        borderRadius,
         className
       )}
       {...props}
     >
       {icon && (
-        <div className="shrink-0 pt-1.25">
+        <div className={classNames(
+        'shrink-0 m-1',
+        props.classNameIcon)} >
           {icon}
         </div>
       )}
       
       <div className={classNames(
-        labelFontSizeOption, labelFontTrackingOption, 'text-wrap h-auto')} >
+        labelFontSizeOption, labelFontTrackingOption, 'text-wrap',
+        props.classNameText)} >
         {label}
       </div>
     </button>

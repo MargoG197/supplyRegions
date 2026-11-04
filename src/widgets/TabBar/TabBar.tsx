@@ -22,7 +22,7 @@ export const TabBar = (
   const renderTabContent = (Icon: React.FC<React.SVGProps<SVGSVGElement>>, label: string, isActive: boolean) => (
     <>
       <Icon className={`h-5 min-w-5 min-h-5 ${isActive ? activeIconClass : inactiveIconClass}`} />
-      <span className={classNames('mt-1.25 font-label-emphasized w-21.75 min-w-21.75', isActive ? activeTextClass : inactiveTextClass)}>
+      <span className={classNames('mt-1.5 font-label-emphasized w-21.75 min-w-21.75', isActive ? activeTextClass : inactiveTextClass)}>
         {label}
       </span>
     </>

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import classNames from 'classnames';
-type TitleFont = 'font-headline-h3' | 'font-bodytext-m';
+type TitleFont = 'font-headline-h2' | 'font-bodytext-m';
 // Задаем опции для отступов
 type Spacing = 'none' | 'xs' | 's' | 'm' | 'l' | 'xl';
 
@@ -35,7 +35,7 @@ const ptMap: Record<Spacing, string> = {
   xs: 'pt-1',
   s: 'pt-2',
   m: 'pt-4',
-  l: 'pt-6',
+  l: 'pt-5',
   xl: 'pt-8',
 };
 const pbMap: Record<Spacing, string> = {
@@ -43,7 +43,7 @@ const pbMap: Record<Spacing, string> = {
   xs: 'pb-1',
   s: 'pb-2',
   m: 'pb-4',
-  l: 'pb-6',
+  l: 'pb-5',
   xl: 'pb-8',
 };
 
@@ -56,7 +56,7 @@ const titleGapMap: Record<NonNullable<CardProps['titleGap']>, string> = {
 };
 export const Card = ({ 
   title, 
-  titleFont = 'font-headline-h3',
+  titleFont = 'font-headline-h2',
   headerAction,
   children, 
   className,
@@ -69,7 +69,7 @@ export const Card = ({
   return (
     <div 
       className={classNames(
-        'w-full max-w-125 min-h-14.25 mx-auto flex flex-col items-start px-4',
+        'w-full max-w-125 min-h-14.25 mx-auto flex flex-col items-start p-4',
         ptMap[paddingTop],
         pbMap[paddingBottom],
         'bg-light-gray-white dark:bg-light-gray-7-logo',
@@ -84,7 +84,7 @@ export const Card = ({
       {hasHeader && (
         <div 
           className={classNames(
-            'w-full flex items-center justify-between gap-1 ',
+            'w-full flex items-center justify-between gap-1',
             // Отступ снизу до контента
             titleGapMap[titleGap] 
           )}

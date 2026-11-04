@@ -170,6 +170,9 @@
 @utility btn-B-WhiteDefault {
   @apply w-full max-w-89.5 h-10.75 min-h-10.75 rounded-xs font-bodytext-regular border border-light-brand-green bg-light-gray-white text-light-gray-black dark:bg-light-gray-6 dark:text-light-gray-white;
 }
+@utility btn-B-WhiteDefault-lg {
+  @apply w-full max-w-89.5 h-12.75 min-h-12.75 rounded-xs font-bodytext-regular border border-light-brand-green bg-light-gray-white text-light-gray-black dark:bg-light-gray-6 dark:text-light-gray-white;
+}
 @utility btn-B-GrayDefault {
   @apply w-full max-w-89.5 h-10.75 min-h-10.75 rounded-xs font-bodytext-m bg-light-gray-1 text-light-gray-black;
 }

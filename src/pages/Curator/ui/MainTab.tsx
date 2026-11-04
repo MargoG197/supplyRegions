@@ -13,27 +13,28 @@ import { QrCodes } from "@/widgets/QrCodes/QrCodes";
 export const MainTab = () => {
   return (
     <div className="flex flex-col gap-1">
-      <Card title="Сверка за 2026 год">
-        <div className="flex flex-col gap-3">
+      <Card title="Сверка за 2026 год" paddingTop = 'l' paddingBottom = 'l'>
+        <div className="flex flex-col gap-4 pt-1">
           <ReportSummary />
-          <ActionCard label="Последний отчет о раздаче 02.02.2026" />
-          <Button variant="btn-B-WhiteDefault">Смотреть отчеты</Button>
+          <ActionCard label="Последний отчет о раздаче 02.02.2026" className="-mt-px"/>
+          <Button variant="btn-B-WhiteDefault-lg" >Смотреть отчеты</Button>
         </div>
       </Card>
       <Card>
-        <div className="flex flex-col gap-3 justify-between">
-          <div className="flex justify-between gap-3">
+        <div className="flex flex-col gap-4 justify-between">
+          <div className="flex justify-between gap-4">
             <WithdrawalReportModal mainScreen={true} />
             <ActionCard
               icon={<ArrowRightIcon />}
               label="Подать отчет о раздаче"
+              classNameIcon="mt-1.25 mr-0.75"
             />
           </div>
           <WriteOffActionCard />
         </div>
       </Card>
-      <Card title="Заявки нуждающихся" rounded="none">
-        <div className="flex flex-col gap-2.5 w-full max-w-125">
+      <Card title="Заявки нуждающихся" rounded="none" paddingTop = 'l' paddingBottom = 'l'>
+        <div className="flex flex-col gap-2 w-full pt-1 pb-4 max-w-125">
           {/* Новые заявки (Голубая) */}
           <StatusCard
             label="Новые заявки"
@@ -57,12 +58,12 @@ export const MainTab = () => {
             className="bg-light-bg-danger-secondary"
             textClassName="text-light-text-danger-default"
             onClick={() => console.log("Переход к критическим")}
-          />
-          <Button variant="btn-B-WhiteDefault">Перейти ко всем заявкам</Button>
-        </div>
+          /></div>
+          <Button variant="btn-B-WhiteDefault-lg">Перейти ко всем заявкам</Button>
+        
       </Card>
-      <Card>
-        <div className="flex justify-between gap-3">
+      <Card  paddingTop = 'l' paddingBottom = 'l'>
+        <div className="flex justify-between gap-4">
           <QrCodes />
           <KnowledgeBase/>
         </div>

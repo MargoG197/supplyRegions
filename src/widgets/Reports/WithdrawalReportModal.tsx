@@ -83,6 +83,7 @@ export const WithdrawalReportModal = ({
           onClick={() => setIsOpen(true)}
           icon={<PlusIcon />}
           label="Подать отчет о выемке"
+          classNameIcon="mt-1.25"
         />
       ) : (
         <Button variant="btn-B-GreenDefault-lg" onClick={() => setIsOpen(true)}>

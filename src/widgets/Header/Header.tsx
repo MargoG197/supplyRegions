@@ -14,7 +14,7 @@ export const Header = () => {
   // В будущем эти данные будут браться из Zustand (authStore)
   const orgName = "НКО «Добрые Сердца»";
   const userRole = "Куратор";
-  const userCity = "Самара";
+  // const userCity = "Самара";
 
   // Состояние для отслеживания статуса уведомлений
   const [permission, setPermission] = useState<NotificationPermissionState>(
@@ -92,7 +92,7 @@ export const Header = () => {
           {orgName}
         </h1>
         <p className="font-caption-regular text-light-gray-5 dark:text-light-gray-4 mt-0.5">
-          {userRole} <span className="ml-1">{userCity}</span>
+          {userRole}
         </p>
       </div>
 

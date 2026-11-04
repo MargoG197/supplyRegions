@@ -1,41 +1,39 @@
 export const ReportSummary = () => {
   return (
-    <div className="flex justify-between -mt-0.5 items-start w-full">
+    <div className="flex justify-between items-center w-full">
       {/* ЛЕВАЯ ЧАСТЬ: Список данных */}
-      <div className="flex flex-col gap-1.5 grow w-full max-w-[38%]">
-        <div className="flex justify-between w-full items-center">
-          <div className="font-caption-regular text-light-gray-4 dark:text-light-gray-3">
+      <div className="flex justify-between grow w-full max-w-[48.5%]">
+        <div className="font-bodytext-regular gap-1 text-light-gray-5 dark:text-light-gray-4 flex flex-col justify-between items-start ">
+          <div>
             Выемки
           </div>
-          <div className="font-caption-regular text-light-gray-black dark:text-light-gray-white">
-            491.1 кг
-          </div>
-        </div>
-
-        <div className="flex justify-between w-full items-center">
-          <span className="font-caption-regular text-light-gray-4 dark:text-light-gray-3">
+          <span>
             Списания
           </span>
-          <span className="font-caption-regular text-light-gray-black dark:text-light-gray-white">
-            14.2 кг
+          <span >
+            Раздачи
           </span>
         </div>
 
-        <div className="flex justify-between w-full items-center">
-          <span className=" font-caption-regular text-light-gray-4 dark:text-light-gray-3">
-            Раздачи
+        <div className="font-bodytext-regular gap-1 text-light-gray-black dark:text-light-gray-white flex flex-col justify-between items-end">
+          <div>
+            491.1 кг
+          </div>
+          <span>
+            14.2 кг
           </span>
-          <span className="font-caption-regular text-light-gray-black dark:text-light-gray-white">
+          <span>
             352.5 кг
           </span>
         </div>
+
       </div>
 
-      <div className="bg-light-bg-warning-secondary-hover rounded-xs py-3.25 px-3 flex flex-col items-start justify-center">
-        <span className="font-headline-h2 h-6.75 text-light-text-warning-default">
+      <div className="bg-light-bg-warning-secondary-hover rounded-xs p-3 flex flex-col items-start justify-center">
+        <span className="font-headline-h2 text-light-text-warning-default">
           124.4 кг
         </span>
-        <span className="font-caption-regular h-5 text-light-text-warning-default">К раздаче</span>
+        <span className="font-caption-regular tracking-normal text-light-text-warning-default text-left">Осталось<br/> раздать</span>
       </div>
     </div>
   );
