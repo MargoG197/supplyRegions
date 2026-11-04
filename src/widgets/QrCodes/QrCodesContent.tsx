@@ -64,7 +64,7 @@ export const QrCodesContent = () => {
             {/* Сетка */}
             <div className="grid grid-cols-2 gap-x-4 gap-y-4.5">
               {mockData.map((item) => (
-                <SmallQr item={item} />
+                <SmallQr item={item} key={item.id} />
               ))}
             </div>
           </div>

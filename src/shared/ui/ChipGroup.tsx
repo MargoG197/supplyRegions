@@ -40,7 +40,7 @@ export const ChipGroup = ({
   };
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-1.5 items-start">
       {label && (
         <label className="font-caption-regular font-medium text-light-gray-black dark:text-light-gray-1">
           {label}
@@ -55,7 +55,7 @@ export const ChipGroup = ({
             <Chip
               key={option.value}
               label={option.label}
-              icon={option.icon}
+              // icon={option.icon}
               selected={isSelected}
               onClick={() => handleToggle(option.value)}
             />

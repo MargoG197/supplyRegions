@@ -68,7 +68,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
     const displayHint = error || hint;
 
     return (
-      <div className="flex flex-col gap-1.5 w-full">
+      <div className="flex flex-col gap-1.5 w-full items-start">
         <label className="font-caption-regular text-light-gray-black dark:text-light-gray-1">
           {label}
         </label>

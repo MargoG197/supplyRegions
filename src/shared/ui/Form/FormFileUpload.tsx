@@ -1,9 +1,9 @@
-import { useRef, ChangeEvent } from 'react';
-import classNames from 'classnames';
-import ClipIcon from '~assets/icons/paper.clip.svg?react';
-import CameraIcon from '~assets/icons/camera.svg?react';
+import { useRef, ChangeEvent } from "react";
+import classNames from "classnames";
+import ClipIcon from "~assets/icons/paper.clip.svg?react";
+import CameraIcon from "~assets/icons/camera.svg?react";
 
-type FileMode = 'document' | 'image';
+type FileMode = "document" | "image";
 
 interface FormFileUploadProps {
   label: React.ReactNode;
@@ -13,14 +13,16 @@ interface FormFileUploadProps {
   /** Максимальное количество файлов (для фото = 3, для акта = 1) */
   maxFiles?: number;
   /** Колбэк при выборе файлов */
-  onFilesSelect?: (files: File[]) => void; 
+  onFilesSelect?: (files: File[]) => void;
+  gap?: string;
 }
 
 // Предустановленные настройки для каждого режима
 const MODE_CONFIG = {
   document: {
     icon: <ClipIcon />,
-    accept: ".pdf,.doc,.docx,.xls,.xlsx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    accept:
+      ".pdf,.doc,.docx,.xls,.xlsx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     multiple: false,
   },
   image: {
@@ -33,9 +35,10 @@ const MODE_CONFIG = {
 export const FormFileUpload = ({
   label,
   buttonText,
-  mode = 'document',
+  mode = "document",
   maxFiles,
   onFilesSelect,
+  gap,
 }: FormFileUploadProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const config = MODE_CONFIG[mode];
@@ -53,12 +56,12 @@ export const FormFileUpload = ({
       }
 
       onFilesSelect?.(files);
-      e.target.value = ''; 
+      e.target.value = "";
     }
   };
 
   return (
-    <div className="flex flex-col gap-1.5">
+    <div className="flex flex-col gap-1.5 items-start">
       <label className="font-caption-regular font-medium text-light-gray-black dark:text-light-gray-1">
         {label}
       </label>
@@ -76,12 +79,17 @@ export const FormFileUpload = ({
         type="button"
         onClick={handleButtonClick}
         className={classNames(
-          'w-fit h-10.75 pl-3 pr-5 flex items-center justify-start rounded-xs transition-colors',
-          'bg-transparent border border-light-brand-green text-light-gray-black dark:text-light-gray-white',
-          'hover:bg-green-50 dark:hover:bg-green-900/20 active:scale-[0.99]'
+          "w-fit h-10.75 pl-4.5 pr-4 flex items-center justify-start rounded-xs transition-colors",
+          "bg-transparent border border-light-brand-green text-light-gray-black dark:text-light-gray-white",
+          "hover:bg-green-50 dark:hover:bg-green-900/20 active:scale-[0.99]",
         )}
       >
-        <div className="shrink-0 text-light-gray-black dark:text-light-gray-white">
+        <div
+          className={classNames(
+            "shrink-0 text-light-gray-black dark:text-light-gray-white",
+            gap,
+          )}
+        >
           {config.icon}
         </div>
         <span className="font-bodytext-regular">{buttonText}</span>

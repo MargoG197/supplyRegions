@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from './app/stores/authStore';
 import './App.css';
 import { AnimatedOutlet } from './shared/ui/AnimatedOutlet';
+import { PATHS } from './paths';
 
 const App = () => {
   const { currentUser, isLoading } = useAuthStore();
@@ -15,13 +16,13 @@ const App = () => {
 
     // Если пользователь не авторизован и он не на странице регистрации — на регистрацию
     if (!currentUser && location.pathname !== '/registration') {
-      navigate('/registration', { replace: true });
+      navigate(PATHS.REGISTRATION, { replace: true });
       return;
     }
 
     // Если пользователь авторизован, но находится на странице регистрации — на главную
     if (currentUser && location.pathname === '/registration') {
-      navigate('/curator/main', { replace: true });
+      navigate(PATHS.CURATOR.MAIN  , { replace: true });
     }
   }, [currentUser, isLoading, location.pathname, navigate]);
 

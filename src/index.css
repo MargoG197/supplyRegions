@@ -11,8 +11,6 @@
   --opacity-47: 0.47;
   --app-width: 500px; 
   
-
-
   /* colors.light.* */
   --color-light-gray-white: #FFFFFF;
   --color-light-gray-1: #F2F2F2;
@@ -25,6 +23,7 @@
   --color-light-gray-black: #111111;
   --color-light-brand-green: #1F7B4E;
   --color-light-error-red: #EB5757;
+  --color-light-red-primary: #CC3D3D;
   --color-light-bg-warning-secondary: #FFF1C2;
   --color-light-bg-warning-secondary-hover: #FFE8A3;
   --color-light-text-warning-default: #522504;

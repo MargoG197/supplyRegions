@@ -1,11 +1,11 @@
-import { ActionCard } from "@/shared/ui/ActionCard";
-import { BaseModal } from "@/shared/ui/BaseModal";
 import { useState } from "react";
-import { AttachedFile } from "@/shared/ui/Form/AttachedFile";
-import { OrderDoc } from "./OrderDoc";
-import { CuratorDoc } from "./CuratorDoc";
-import { PhotoReportNotice } from "./PhotoReportNotice";
-import { EventRules } from "./EventRules";
+
+import { TabPageLayout } from "@/shared/layouts/TabPageLayout";
+import { OrderDoc } from "@/widgets/KnowledgeBase/OrderDoc";
+import { CuratorDoc } from "@/widgets/KnowledgeBase/CuratorDoc";
+import { EventRules } from "@/widgets/KnowledgeBase/EventRules";
+import { PhotoReportNotice } from "@/widgets/KnowledgeBase/PhotoReportNotice";
+import { AttachedFile } from "@/shared/ui/Form/AttachedFile copy";
 
 const tabsData = [
   { id: "documents", label: "Документы" },
@@ -14,13 +14,12 @@ const tabsData = [
 ];
 
 export const KnowledgeBase = () => {
-  const [isOpen, setIsOpen] = useState(false);
+
   const [activeTab, setActiveTab] = useState("documents");
 
   return (
     <>
-      <ActionCard label="База знаний" onClick={() => setIsOpen(true)}/>
-      <BaseModal title="База знаний" open={isOpen} onOpenChange={setIsOpen}>
+       <TabPageLayout title="База знаний">
         <div className="w-full mx-auto h-lvh bg-light-gray-white">
           {/* Таб-бар */}
           <div className="flex justify-between items-center px-4.5 py-1.5">
@@ -72,7 +71,7 @@ export const KnowledgeBase = () => {
             )}
           </div>
         </div>
-      </BaseModal>
+        </TabPageLayout>
     </>
   );
 };

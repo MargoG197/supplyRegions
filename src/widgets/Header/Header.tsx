@@ -1,7 +1,8 @@
 import { useState } from "react";
 import classNames from "classnames";
 import NotificationIcon from "~assets/icons/notify_bell.svg?react";
-import { Profile } from "../Profile/Profile";
+import { ProfileWidget } from "../Profile/ProfileWidget";
+
 
 // Тип состояния для разрешений
 type NotificationPermissionState =
@@ -118,7 +119,7 @@ export const Header = () => {
           )}
         </button>
 
-        <Profile />
+        <ProfileWidget />
       </div>
     </div>
   );

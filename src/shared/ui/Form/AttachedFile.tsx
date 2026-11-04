@@ -1,66 +1,30 @@
-import classNames from 'classnames';
-import ClipIcon from '~assets/icons/paper.clip.svg?react';
 import CloseIcon from '~assets/icons/close.svg?react';
-import DownloadIcon from '~assets/icons/download.svg?react'
-import { twMerge } from 'tailwind-merge';
 
-type BaseProps = {
-  fileName: string;
-  className?: string;
-};
-
-type RemoveActionProps = BaseProps & {
-  action: 'remove';
+interface AttachedFileProps {
+  /** Ссылка на картинку (например, импортированная paper.jpg) */
+  src: string;
   onRemove: () => void;
-  onDownload?: never;
-};
+}
 
-type DownloadActionProps = BaseProps & {
-  action: 'download';
-  onDownload: () => void;
-  onRemove?: never;
-};
-
-type AttachedFileProps = RemoveActionProps | DownloadActionProps;
-
-export const AttachedFile = (props: AttachedFileProps) => {
-  const { fileName, className, action } = props;
-
+export const AttachedFile = ({ src, onRemove }: AttachedFileProps) => {
   return (
-    <div 
-      className={twMerge(
-        classNames(
-          'flex items-center justify-between w-full h-13.75 px-3 bg-light-gray-1 dark:bg-light-gray-6 rounded-xs',
-          className
-        )
-      )}
-    >
-      <div className="flex items-center gap-0.5 overflow-hidden">
-        <ClipIcon className="shrink-0 text-light-gray-5 dark:text-light-gray-4" />
-        <span className="font-bodytext-regular text-light-gray-black dark:text-light-gray-white truncate">
-          {fileName}
-        </span>
-      </div>
-      
-      {action === 'remove' ? (
-        <button 
-          type="button" 
-          onClick={props.onRemove}
-          className="shrink-0 p-1 ml-2 rounded-full hover:bg-light-gray-2 dark:hover:bg-light-gray-5 transition-colors"
-          aria-label="Удалить файл"
-        >
-          <CloseIcon className="text-light-gray-black dark:text-light-gray-white" />
-        </button>
-      ) : (
-        <button 
-          type="button" 
-          onClick={props.onDownload}
-          className="shrink-0 p-1 ml-2 rounded-full hover:bg-light-gray-2 dark:hover:bg-light-gray-5 transition-colors"
-          aria-label="Скачать файл"
-        >
-          <DownloadIcon className="text-light-gray-black dark:text-light-gray-white" />
-        </button>
-      )}
+    <div className="relative w-28.5 h-28.5 shrink-0 rounded-xs overflow-hidden bg-light-gray-2 dark:bg-light-gray-6 group">
+      {/* Картинка рендерится сразу, без загрузки и ошибок */}
+      <img
+        src={src}
+        alt=""
+        className="w-full h-full object-cover"
+      />
+
+      {/* Кнопка удаления (идентична AttachedPhoto) */}
+      <button
+        type="button"
+        onClick={onRemove}
+        className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center bg-light-gray-1/40 hover:bg-light-gray-1/60 rounded-full transition-colors backdrop-blur-sm z-20"
+        aria-label="Удалить фото"
+      >
+        <CloseIcon className="w-3.5 h-3.5 text-light-gray-7-logo" />
+      </button>
     </div>
   );
 };

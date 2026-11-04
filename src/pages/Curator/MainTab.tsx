@@ -5,35 +5,43 @@ import ArrowRightIcon from "~assets/icons/arrowCircle.svg?react";
 import { StatusCard } from "~/shared/ui/StatusCard";
 import { Button } from "~/shared/ui/Button";
 import { ReportSummary } from "~/widgets/Summary/ReportSummary";
-import { WithdrawalReportModal } from "~/widgets/Reports/WithdrawalReportModal";
-import { WriteOffActionCard } from "@/widgets/Reports/WriteOffActionCard";
-import { KnowledgeBase } from "@/widgets/KnowledgeBase/KnowledgeBase";
+import { WriteOffWidget } from "@/widgets/Reports/WriteOffWidget";
 import { QrCodes } from "@/widgets/QrCodes/QrCodes";
+import { WithdrawalReportWidget } from "@/widgets/Reports/WithdrawalReportWidget";
+import { KnowledgeBaseWidget } from "@/widgets/KnowledgeBase/KnowledgeBaseWidget";
 
 export const MainTab = () => {
   return (
     <div className="flex flex-col gap-1">
-      <Card title="Сверка за 2026 год" paddingTop = 'l' paddingBottom = 'l'>
+      <Card title="Сверка за 2026 год" paddingTop="l" paddingBottom="l">
         <div className="flex flex-col gap-4 pt-1">
           <ReportSummary />
-          <ActionCard label="Последний отчет о раздаче 02.02.2026" className="-mt-px"/>
-          <Button variant="btn-B-WhiteDefault-lg" >Смотреть отчеты</Button>
+          <ActionCard
+            label="Последний отчет о раздаче 02.02.2026"
+            className="-mt-px"
+          />
+          <Button variant="btn-B-WhiteDefault-lg">Смотреть отчеты</Button>
         </div>
       </Card>
       <Card>
         <div className="flex flex-col gap-4 justify-between">
           <div className="flex justify-between gap-4">
-            <WithdrawalReportModal mainScreen={true} />
+            <WithdrawalReportWidget mainScreen={true} />
             <ActionCard
               icon={<ArrowRightIcon />}
               label="Подать отчет о раздаче"
               classNameIcon="mt-1.25 mr-0.75"
             />
           </div>
-          <WriteOffActionCard />
+          <WriteOffWidget />
         </div>
       </Card>
-      <Card title="Заявки нуждающихся" rounded="none" paddingTop = 'l' paddingBottom = 'l'>
+      <Card
+        title="Заявки нуждающихся"
+        rounded="none"
+        paddingTop="l"
+        paddingBottom="l"
+      >
         <div className="flex flex-col gap-2 w-full pt-1 pb-4 max-w-125">
           {/* Новые заявки (Голубая) */}
           <StatusCard
@@ -58,14 +66,19 @@ export const MainTab = () => {
             className="bg-light-bg-danger-secondary"
             textClassName="text-light-text-danger-default"
             onClick={() => console.log("Переход к критическим")}
-          /></div>
-          <Button variant="btn-B-WhiteDefault-lg">Перейти ко всем заявкам</Button>
-        
+          />
+        </div>
+        <div className="flex flex-col w-full max-w-125">
+          {" "}
+          <Button variant="btn-B-WhiteDefault-lg">
+            Перейти ко всем заявкам
+          </Button>
+        </div>
       </Card>
-      <Card  paddingTop = 'l' paddingBottom = 'l'>
+      <Card paddingTop="l" paddingBottom="l">
         <div className="flex justify-between gap-4">
           <QrCodes />
-          <KnowledgeBase/>
+          <KnowledgeBaseWidget />
         </div>
       </Card>
     </div>

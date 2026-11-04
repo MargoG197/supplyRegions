@@ -7,7 +7,7 @@ interface SubHeaderProps {
 
 export const SubHeader = ({ title, onClose }: SubHeaderProps) => {
   return (
-    <div className="relative bg-light-gray-white flex items-center pt-2 gap-13.5 px-4 h-full min-h-15 text-light-gray-black dark:bg-light-gray-7-logo w-full">
+    <div className="relative bg-light-gray-white h-14.5 flex items-center pt-2.5 gap-13.5 px-4 min-h-15 text-light-gray-black dark:bg-light-gray-7-logo w-full">
       <Arrow_left
         role="button"
         className="dark:fill-light-gray-2 fill-light-gray-black cursor-pointer "
@@ -19,7 +19,7 @@ export const SubHeader = ({ title, onClose }: SubHeaderProps) => {
           делает так, что текст всегда строго по центру экрана, 
           независимо от ширины стрелки слева. 
           pointer-events-none нужен, чтобы можно было кликать сквозь текст. */}
-      <h2 className="absolute inset-x-0 top-6 flex items-center justify-center pointer-events-none font-bodytext-regular text-light-gray-black dark:text-light-gray-1">
+      <h2 className="absolute inset-x-0 flex items-center justify-center pointer-events-none font-bodytext-regular text-light-gray-black dark:text-light-gray-1">
         {title}
       </h2>
       

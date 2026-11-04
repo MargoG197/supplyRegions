@@ -27,6 +27,7 @@
 // src/shared/layouts/TabPageLayout.tsx
 import { useNavigate } from 'react-router-dom';
 import { SubHeader } from '@/shared/ui/SubHeader';
+import { PATHS } from '@/paths';
 
 interface TabPageLayoutProps {
   title: string;
@@ -39,7 +40,7 @@ export const TabPageLayout = ({ title, onBack, children }: TabPageLayoutProps) =
 
   const goBack = () => {
     if (window.history.length > 1) navigate(-1);
-    else navigate('/curator/main', { replace: true });
+    else navigate(PATHS.CURATOR.MAIN , { replace: true });
   };
 
   const handleBack = onBack ?? goBack;

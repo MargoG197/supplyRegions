@@ -3,7 +3,7 @@ import { Button } from "@/shared/ui/Button";
 import { Card } from "@/shared/ui/Card";
 import { QRCodeSVG } from "qrcode.react";
 import { useState } from "react";
-import { WithdrawalReportModal } from "../Reports/WithdrawalReportModal";
+import { WithdrawalReportWidget } from "../Reports/WithdrawalReportWidget";
 
 interface QrCardData {
   id: string;
@@ -49,7 +49,7 @@ export const FullScreenQr = ({ item }: FullScreenQrProps) => {
           className="border-t-[0.33px] "
         >
           <div className="w-full flex justify-center">
-            <WithdrawalReportModal mainScreen={false} />
+            <WithdrawalReportWidget mainScreen={false} />
           </div>
         </Card>
       </BaseModal>

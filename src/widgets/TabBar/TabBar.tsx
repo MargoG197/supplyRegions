@@ -41,7 +41,7 @@ export const TabBar = (
         </NavLink>
 
         <NavLink
-          to="/report"
+          to="/reports"
           className={() => classNames(baseBtnClass)}
         >
           {({ isActive }) => renderTabContent(ReportIcon, 'Отчеты', isActive)}
