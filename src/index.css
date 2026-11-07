@@ -9,26 +9,28 @@
 @theme {
   /* opacity: { 47: '0.47' } */
   --opacity-47: 0.47;
-  --app-width: 500px; 
-  
+  --app-width: 500px;
+
   /* colors.light.* */
-  --color-light-gray-white: #FFFFFF;
-  --color-light-gray-1: #F2F2F2;
-  --color-light-gray-2: #D7D7D7;
-  --color-light-gray-3: #BFBFBF;
+  --color-light-gray-white: #ffffff;
+  --color-light-gray-1: #f2f2f2;
+  --color-light-gray-2: #d7d7d7;
+  --color-light-gray-3: #bfbfbf;
   --color-light-gray-4: #888888;
   --color-light-gray-5: #575757;
   --color-light-gray-6: #323232;
-  --color-light-gray-7-logo: #1F1F1F;
+  --color-light-gray-7-logo: #1f1f1f;
   --color-light-gray-black: #111111;
-  --color-light-brand-green: #1F7B4E;
-  --color-light-error-red: #EB5757;
-  --color-light-red-primary: #CC3D3D;
-  --color-light-bg-warning-secondary: #FFF1C2;
-  --color-light-bg-warning-secondary-hover: #FFE8A3;
+  --color-light-brand-green: #1f7b4e;
+  --color-light-error-red: #eb5757;
+  --color-light-red-primary: #cc3d3d;
+  --color-light-orange-primary: #e9a033;
+  --color-light-blue-primary: #3677B2;
+  --color-light-bg-warning-secondary: #fff1c2;
+  --color-light-bg-warning-secondary-hover: #ffe8a3;
   --color-light-text-warning-default: #522504;
-  --color-light-bg-danger-secondary: #FDD3D0;
-  --color-light-text-danger-default: #900B09;
+  --color-light-bg-danger-secondary: #fdd3d0;
+  --color-light-text-danger-default: #900b09;
 
   /* borderRadius.* */
   --radius-xs: 10px;
@@ -46,40 +48,40 @@
    ============================================================ */
 @layer base {
   @font-face {
-    font-family: 'TikTokSans';
+    font-family: "TikTokSans";
     font-style: normal;
     font-weight: 300;
-    src: url(./assets/fonts/TikTokSans-Light.woff) format('woff');
+    src: url(./assets/fonts/TikTokSans-Light.woff) format("woff");
   }
   @font-face {
-    font-family: 'TikTokSans';
+    font-family: "TikTokSans";
     font-style: normal;
     font-weight: 400;
-    src: url(./assets/fonts/TikTokSans-Regular.woff) format('woff');
+    src: url(./assets/fonts/TikTokSans-Regular.woff) format("woff");
   }
   @font-face {
-    font-family: 'TikTokSans';
+    font-family: "TikTokSans";
     font-style: normal;
     font-weight: 500;
-    src: url(./assets/fonts/TikTokSans-Medium.woff) format('woff');
+    src: url(./assets/fonts/TikTokSans-Medium.woff) format("woff");
   }
   @font-face {
-    font-family: 'TikTokSans';
+    font-family: "TikTokSans";
     font-style: normal;
     font-weight: 600;
-    src: url(./assets/fonts/TikTokSans-SemiBold.woff) format('woff');
+    src: url(./assets/fonts/TikTokSans-SemiBold.woff) format("woff");
   }
   @font-face {
-    font-family: 'TikTokSans';
+    font-family: "TikTokSans";
     font-style: normal;
     font-weight: 700;
-    src: url(./assets/fonts/TikTokSans-Bold.woff) format('woff');
+    src: url(./assets/fonts/TikTokSans-Bold.woff) format("woff");
   }
   @font-face {
-    font-family: 'TikTokSans';
+    font-family: "TikTokSans";
     font-style: normal;
     font-weight: 800;
-    src: url(./assets/fonts/TikTokSans-ExtraBold.woff) format('woff');
+    src: url(./assets/fonts/TikTokSans-ExtraBold.woff) format("woff");
   }
   * {
     @apply border-border outline-ring/50;
@@ -97,56 +99,56 @@
    Каждый класс один-в-один как был.
    ============================================================ */
 @utility font-headline-h1 {
-  font-family: 'TikTokSans';
+  font-family: "TikTokSans";
   font-size: 28px;
   line-height: 34px;
   font-weight: 800;
   @apply tracking-tight;
 }
 @utility font-headline-h2 {
-  font-family: 'TikTokSans';
+  font-family: "TikTokSans";
   font-size: 20px;
   line-height: 27px;
   font-weight: 700;
   @apply tracking-tight;
 }
 @utility font-headline-h3 {
-  font-family: 'TikTokSans';
+  font-family: "TikTokSans";
   font-size: 18px;
   line-height: 24px;
   font-weight: 600;
   @apply tracking-tight;
 }
 @utility font-bodytext-regular {
-  font-family: 'TikTokSans';
+  font-family: "TikTokSans";
   font-size: 17px;
   line-height: 25px;
   font-weight: 400;
   @apply tracking-tight;
 }
 @utility font-bodytext-m {
-  font-family: 'TikTokSans';
+  font-family: "TikTokSans";
   font-size: 17px;
   line-height: 25px;
   font-weight: 500;
   @apply tracking-tight;
 }
 @utility font-caption-regular {
-  font-family: 'TikTokSans';
+  font-family: "TikTokSans";
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;
   @apply tracking-tight;
 }
 @utility font-label-regular {
-  font-family: 'TikTokSans';
+  font-family: "TikTokSans";
   font-size: 12px;
   line-height: 16px;
   font-weight: 400;
   @apply tracking-tight;
 }
 @utility font-label-emphasized {
-  font-family: 'TikTokSans';
+  font-family: "TikTokSans";
   font-size: 12px;
   line-height: 16px;
   font-weight: 300;
@@ -157,7 +159,7 @@
    @layer components — бывшие классы .btn-* и базовые селекторы
    Переведены на @utility, чтобы точно работали в v4.
    ============================================================ */
-@utility btn-B-GreenDefault {
+/* @utility btn-B-GreenDefault {
   @apply w-full max-w-89.5 h-10.75 min-h-10.75 rounded-xs font-bodytext-m bg-light-brand-green text-light-gray-white disabled:bg-light-gray-3 dark:disabled:bg-light-gray-5;
 }
 @utility btn-B-GreenDefault-lg {
@@ -181,12 +183,12 @@
 /* @utility btn-M-GreenClicked {
   @apply min-w-43.75 w-full h-10.75 min-h-10.75 rounded-xs font-bodytext-m bg-light-gray-6 text-light-gray-white;
 } */
-@utility btn-M-WhiteDefault { /* min-w-43.75 */
+/* @utility btn-M-WhiteDefault { 
   @apply w-full h-10.75 min-h-10.75 rounded-xs border border-light-brand-green font-bodytext-regular bg-light-gray-white text-light-gray-black dark:font-bodytext-m dark:bg-light-gray-6 dark:text-light-gray-white;
 }
 @utility btn-M-RedDefault {
   @apply min-w-43.75 w-full h-10.75 min-h-10.75 rounded-xs bg-light-error-red font-bodytext-regular text-light-gray-white dark:font-bodytext-m dark:bg-light-gray-6 dark:text-light-gray-white;
-}
+} */
 /* @utility btn-M-WhiteDefault-w {
   @apply min-w-43.75 w-full h-10.75 min-h-10.75 rounded-xs border border-light-brand-green font-bodytext-regular bg-light-gray-white text-light-gray-black dark:font-bodytext-m dark:bg-light-gray-6 dark:text-light-gray-white;
 } */
@@ -194,7 +196,7 @@
   @apply w-43.75 h-10.75 min-h-10.75 rounded-xs bg-light-error-red font-bodytext-regular text-light-gray-white dark:font-bodytext-m dark:bg-light-gray-6 dark:text-light-gray-white;
 } */
 
-@utility btn-M-WhiteClicked {
+/* @utility btn-M-WhiteClicked {
   @apply w-39.75 h-10.75 min-h-10.75 rounded-xs font-bodytext-m bg-light-gray-1 text-light-gray-black;
 } 
 @utility btn-S-GreenDefault {
@@ -212,6 +214,147 @@
 }
 @utility btn-XS-NoBorderDefault {
   @apply min-w-29.5 w-full h-8.5 min-h-8.5 rounded-xs font-caption-regular bg-light-gray-white dark:bg-light-gray-6 dark:text-light-gray-white text-light-gray-5;
+} */
+
+/* ---------- B (большие, full-width) ---------- */
+@utility btn-B-GreenDefault {
+  @apply w-full max-w-89.5 h-10.75 min-h-10.75 rounded-xs font-bodytext-m
+    bg-light-brand-green text-light-gray-white
+    cursor-pointer transition-[transform,filter,background-color,border-color] duration-150 ease-out
+    active:scale-[0.98] active:brightness-95
+    disabled:bg-light-gray-3 dark:disabled:bg-light-gray-5
+    disabled:cursor-not-allowed disabled:active:scale-100 disabled:active:brightness-100;
+}
+@utility btn-B-GreenDefault-lg {
+  @apply w-full max-w-89.5 h-12.75 min-h-12.75 rounded-xs font-bodytext-m
+    bg-light-brand-green text-light-gray-white
+    cursor-pointer transition-[transform,filter,background-color,border-color] duration-150 ease-out
+    active:scale-[0.98] active:brightness-95
+    disabled:bg-light-gray-3 dark:disabled:bg-light-gray-5
+    disabled:cursor-not-allowed disabled:active:scale-100 disabled:active:brightness-100;
+}
+@utility btn-B-GreenInactive {
+  @apply w-full max-w-89.5 h-10.75 min-h-10.75 rounded-xs font-bodytext-regular
+    bg-light-gray-3 text-light-gray-white dark:bg-light-gray-5
+    cursor-not-allowed
+    disabled:cursor-not-allowed;
+}
+@utility btn-B-WhiteDefault {
+  @apply w-full max-w-89.5 h-10.75 min-h-10.75 rounded-xs font-bodytext-regular
+    border border-light-brand-green bg-light-gray-white text-light-gray-black
+    dark:bg-light-gray-6 dark:text-light-gray-white
+    cursor-pointer transition-[transform,filter,background-color,border-color] duration-150 ease-out
+    active:scale-[0.98] active:brightness-95
+    disabled:bg-light-gray-1 disabled:text-light-gray-4 disabled:border-light-gray-3
+    dark:disabled:bg-light-gray-5 dark:disabled:text-light-gray-4 dark:disabled:border-light-gray-5
+    disabled:cursor-not-allowed disabled:active:scale-100 disabled:active:brightness-100;
+}
+@utility btn-B-WhiteDefault-lg {
+  @apply w-full max-w-89.5 h-12.75 min-h-12.75 rounded-xs font-bodytext-regular
+    border border-light-brand-green bg-light-gray-white text-light-gray-black
+    dark:bg-light-gray-6 dark:text-light-gray-white
+    cursor-pointer transition-[transform,filter,background-color,border-color] duration-150 ease-out
+    active:scale-[0.98] active:brightness-95
+    disabled:bg-light-gray-1 disabled:text-light-gray-4 disabled:border-light-gray-3
+    dark:disabled:bg-light-gray-5 dark:disabled:text-light-gray-4 dark:disabled:border-light-gray-5
+    disabled:cursor-not-allowed disabled:active:scale-100 disabled:active:brightness-100;
+}
+@utility btn-B-GrayDefault {
+  @apply w-full max-w-89.5 h-10.75 min-h-10.75 rounded-xs font-bodytext-m
+    bg-light-gray-1 text-light-gray-black
+    dark:bg-light-gray-6 dark:text-light-gray-white
+    cursor-pointer transition-[transform,filter,background-color,border-color] duration-150 ease-out
+    active:scale-[0.98] active:brightness-95
+    disabled:bg-light-gray-1 disabled:text-light-gray-4
+    dark:disabled:bg-light-gray-5 dark:disabled:text-light-gray-4
+    disabled:cursor-not-allowed disabled:active:scale-100 disabled:active:brightness-100;
+}
+
+/* ---------- M (средние) ---------- */
+@utility btn-M-GreenDefault {
+  @apply min-w-43.75 w-full h-10.75 min-h-10.75 rounded-xs font-bodytext-m
+    bg-light-brand-green text-light-gray-white
+    cursor-pointer transition-[transform,filter,background-color,border-color] duration-150 ease-out
+    active:scale-[0.98] active:brightness-95
+    disabled:bg-light-gray-3 dark:disabled:bg-light-gray-5
+    disabled:cursor-not-allowed disabled:active:scale-100 disabled:active:brightness-100;
+}
+@utility btn-M-WhiteDefault {
+  @apply w-full h-10.75 min-h-10.75 rounded-xs border border-light-brand-green
+    font-bodytext-regular bg-light-gray-white text-light-gray-black
+    dark:font-bodytext-m dark:bg-light-gray-6 dark:text-light-gray-white
+    cursor-pointer transition-[transform,filter,background-color,border-color] duration-150 ease-out
+    active:scale-[0.98] active:brightness-95
+    disabled:bg-light-gray-1 disabled:text-light-gray-4 disabled:border-light-gray-3
+    dark:disabled:bg-light-gray-5 dark:disabled:text-light-gray-4 dark:disabled:border-light-gray-5
+    disabled:cursor-not-allowed disabled:active:scale-100 disabled:active:brightness-100;
+}
+@utility btn-M-RedDefault {
+  @apply min-w-43.75 w-full h-10.75 min-h-10.75 rounded-xs
+    bg-light-error-red font-bodytext-regular text-light-gray-white
+    dark:font-bodytext-m dark:bg-light-gray-6 dark:text-light-gray-white
+    cursor-pointer transition-[transform,filter,background-color,border-color] duration-150 ease-out
+    active:scale-[0.98] active:brightness-95
+    disabled:bg-light-gray-3 disabled:text-light-gray-4
+    dark:disabled:bg-light-gray-5 dark:disabled:text-light-gray-4
+    disabled:cursor-not-allowed disabled:active:scale-100 disabled:active:brightness-100;
+}
+@utility btn-M-WhiteClicked {
+  @apply w-39.75 h-10.75 min-h-10.75 rounded-xs font-bodytext-m
+    bg-light-gray-1 text-light-gray-black
+    dark:bg-light-gray-6 dark:text-light-gray-white
+    cursor-pointer transition-[transform,filter,background-color,border-color] duration-150 ease-out
+    active:scale-[0.98] active:brightness-95
+    disabled:bg-light-gray-1 disabled:text-light-gray-4
+    dark:disabled:bg-light-gray-5 dark:disabled:text-light-gray-4
+    disabled:cursor-not-allowed disabled:active:scale-100 disabled:active:brightness-100;
+}
+
+/* ---------- S (маленькие) ---------- */
+@utility btn-S-GreenDefault {
+  @apply w-39.75 h-10.75 min-h-10.75 rounded-xs font-bodytext-m
+    bg-light-brand-green text-light-gray-white
+    cursor-pointer transition-[transform,filter,background-color,border-color] duration-150 ease-out
+    active:scale-[0.98] active:brightness-95
+    disabled:bg-light-gray-3 dark:disabled:bg-light-gray-5
+    disabled:cursor-not-allowed disabled:active:scale-100 disabled:active:brightness-100;
+}
+@utility btn-S-GreenRevert {
+  @apply w-39.75 h-10.75 min-h-10.75 rounded-xs font-bodytext-m
+    border border-light-brand-green bg-light-gray-white text-light-gray-black
+    dark:font-bodytext-m dark:bg-light-gray-5 dark:border-light-gray-5 dark:text-light-gray-white
+    cursor-pointer transition-[transform,filter,background-color,border-color] duration-150 ease-out
+    active:scale-[0.98] active:brightness-95
+    disabled:bg-light-gray-1 disabled:text-light-gray-4 disabled:border-light-gray-3
+    dark:disabled:bg-light-gray-5 dark:disabled:text-light-gray-4 dark:disabled:border-light-gray-5
+    disabled:cursor-not-allowed disabled:active:scale-100 disabled:active:brightness-100;
+}
+@utility btn-S-GreenInactive {
+  @apply w-39.75 h-10.75 min-h-10.75 rounded-xs font-bodytext-regular
+    bg-light-gray-3 text-light-gray-white dark:bg-light-gray-5 dark:text-light-gray-4
+    cursor-not-allowed
+    disabled:cursor-not-allowed;
+}
+
+/* ---------- XS (extra small) ---------- */
+@utility btn-XS-WhiteDefault {
+  @apply min-w-29.5 w-full h-8.5 min-h-8.5 rounded-xs border border-light-brand-green
+    font-caption-regular bg-light-gray-white text-light-gray-black
+    dark:bg-light-gray-6 dark:text-light-gray-white
+    cursor-pointer transition-[transform,filter,background-color,border-color] duration-150 ease-out
+    active:scale-[0.98] active:brightness-95
+    disabled:bg-light-gray-1 disabled:text-light-gray-4 disabled:border-light-gray-3
+    dark:disabled:bg-light-gray-5 dark:disabled:text-light-gray-4 dark:disabled:border-light-gray-5
+    disabled:cursor-not-allowed disabled:active:scale-100 disabled:active:brightness-100;
+}
+@utility btn-XS-NoBorderDefault {
+  @apply min-w-29.5 w-full h-8.5 min-h-8.5 rounded-xs font-caption-regular
+    bg-light-gray-white dark:bg-light-gray-6 dark:text-light-gray-white text-light-gray-5
+    cursor-pointer transition-[transform,filter,background-color,border-color] duration-150 ease-out
+    active:scale-[0.98] active:brightness-95
+    disabled:bg-light-gray-1 disabled:text-light-gray-4
+    dark:disabled:bg-light-gray-5 dark:disabled:text-light-gray-4
+    disabled:cursor-not-allowed disabled:active:scale-100 disabled:active:brightness-100;
 }
 /* Базовые селекторы #root / body / html — остаются в @layer base */
 @layer base {
@@ -235,7 +378,7 @@
 
 @theme inline {
   --font-heading: var(--font-sans);
-  --font-sans: 'Inter Variable', sans-serif;
+  --font-sans: "Inter Variable", sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);

@@ -125,7 +125,7 @@ export const FormSelect = ({
                 )}
                 {opt.value === value && (
                   <div className="shrink-0 absolute right-5 top-[50%] text-light-gray-black dark:text-light-gray-white">
-                    <CheckIcon />
+                    <CheckIcon className="text-light-gray-black" />
                   </div>
                 )}
               </button>

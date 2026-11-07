@@ -1,12 +1,14 @@
 import { ReactNode } from 'react';
 import { SubHeader } from './SubHeader'; 
 import { Modal } from './Modal/Modal';
+import classNames from 'classnames';
 
 interface BaseModalProps {
   title: string;
   children: ReactNode;
   open: boolean;
   onOpenChange: React.Dispatch<React.SetStateAction<boolean>>;
+  marginAfterHeader?: boolean;
 }
 
 export const BaseModal = ({
@@ -14,6 +16,7 @@ export const BaseModal = ({
   children,
   open,
   onOpenChange,
+  marginAfterHeader = true,
 }: BaseModalProps) => {
   return (
     <Modal isOpen={open} onOpenChange={onOpenChange}>
@@ -25,7 +28,7 @@ export const BaseModal = ({
           />
         </div>
         
-        <div className="mt-1 flex flex-col overflow-y-auto flex-1 min-h-0">
+        <div  className={classNames("flex flex-col overflow-y-auto flex-1 min-h-0", marginAfterHeader && 'mt-1')} >
           {children}
         </div>
         </div>

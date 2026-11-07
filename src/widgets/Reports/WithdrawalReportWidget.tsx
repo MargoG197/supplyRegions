@@ -1,7 +1,7 @@
 import { PATHS } from "@/paths";
 import { ActionCard } from "@/shared/ui/ActionCard";
 import { Button } from "@/shared/ui/Button";
-import { useNavigate } from "react-router-dom"; // 1. Импортируем хук
+import { useNavigate } from "react-router-dom";
 import PlusIcon from "~assets/icons/plus.svg?react";
 
 interface WithdrawalReportProps {

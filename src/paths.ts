@@ -18,7 +18,9 @@ export const PATHS = {
     ROOT: "/reports",
     WITHDRAWAL: "/reports/withdrawal",
     WRITE_OFF: "/reports/write-off",
-    // ISSUANCE: "/reports/issuance", // Раскомментируете, когда добавите
+    DISTRIBUTION: "/reports/distribution",
+    DISTRIBUTION_REPORT: "/reports/distribution-report",
+    INFO_LETTER_REPORT: "/reports/info-letter-report",
   },
 
   // Заявки

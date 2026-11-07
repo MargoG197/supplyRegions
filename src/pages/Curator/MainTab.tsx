@@ -1,7 +1,6 @@
 import { ActionCard } from "~/shared/ui/ActionCard";
 import { Card } from "~/shared/ui/Card";
 
-import ArrowRightIcon from "~assets/icons/arrowCircle.svg?react";
 import { StatusCard } from "~/shared/ui/StatusCard";
 import { Button } from "~/shared/ui/Button";
 import { ReportSummary } from "~/widgets/Summary/ReportSummary";
@@ -9,6 +8,7 @@ import { WriteOffWidget } from "@/widgets/Reports/WriteOffWidget";
 import { QrCodes } from "@/widgets/QrCodes/QrCodes";
 import { WithdrawalReportWidget } from "@/widgets/Reports/WithdrawalReportWidget";
 import { KnowledgeBaseWidget } from "@/widgets/KnowledgeBase/KnowledgeBaseWidget";
+import { DistributionWidget } from "@/widgets/Reports/DistributionWidget";
 
 export const MainTab = () => {
   return (
@@ -27,11 +27,7 @@ export const MainTab = () => {
         <div className="flex flex-col gap-4 justify-between">
           <div className="flex justify-between gap-4">
             <WithdrawalReportWidget mainScreen={true} />
-            <ActionCard
-              icon={<ArrowRightIcon />}
-              label="Подать отчет о раздаче"
-              classNameIcon="mt-1.25 mr-0.75"
-            />
+            <DistributionWidget />
           </div>
           <WriteOffWidget />
         </div>

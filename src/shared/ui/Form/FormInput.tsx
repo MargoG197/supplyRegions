@@ -7,7 +7,7 @@ import {
   isValidWeightString,
 } from "~/shared/lib/validateDate";
 
-type InputMode = "text" | "date" | "weight";
+type InputMode = "text" | "date" | "weight" | "integer";
 
 interface FormInputProps extends Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -55,6 +55,8 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
         formatted = formatDateInput(formatted);
       } else if (mode === "weight") {
         formatted = formatWeightInput(formatted);
+      } else if (mode === "integer") {
+        formatted = e.target.value.replace(/\D/g, "");
       }
 
       const syntheticEvent = {
@@ -79,7 +81,13 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
           onChange={handleChange}
           type="text"
           inputMode={
-            mode === "date" ? "numeric" : mode === "weight" ? "decimal" : "text"
+            mode === "date"
+              ? "numeric"
+              : mode === "weight"
+                ? "decimal"
+                : mode === "integer"
+                  ? "numeric"
+                  : "text"
           }
           className={classNames(
             "w-full min-h-12 px-3 py-3.75 bg-light-gray-1 dark:bg-light-gray-6 rounded-xs outline-none",

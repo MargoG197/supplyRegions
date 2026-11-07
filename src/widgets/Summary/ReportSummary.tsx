@@ -1,3 +1,5 @@
+import { StockInfo } from "@/shared/ui/StockInfo";
+
 export const ReportSummary = () => {
   return (
     <div className="flex justify-between items-center w-full">
@@ -28,13 +30,7 @@ export const ReportSummary = () => {
         </div>
 
       </div>
-
-      <div className="bg-light-bg-warning-secondary-hover rounded-xs p-3 flex flex-col items-start justify-center">
-        <span className="font-headline-h2 text-light-text-warning-default">
-          124.4 кг
-        </span>
-        <span className="font-caption-regular tracking-normal text-light-text-warning-default text-left">Осталось<br/> раздать</span>
-      </div>
+      <StockInfo weight="124.4" />
     </div>
   );
 };
