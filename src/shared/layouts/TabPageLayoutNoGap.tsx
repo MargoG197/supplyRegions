@@ -1,0 +1,32 @@
+// src/shared/layouts/TabPageLayout.tsx
+import { useNavigate } from 'react-router-dom';
+import { SubHeader } from '@/shared/ui/SubHeader';
+import { PATHS } from '@/paths';
+
+interface TabPageLayoutNoGapProps {
+  title: string;
+  onBack?: () => void;
+  children: React.ReactNode;
+}
+
+export const TabPageLayoutNoGap = ({ title, onBack, children }: TabPageLayoutNoGapProps) => {
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    if (window.history.length > 1) navigate(-1);
+    else navigate(PATHS.CURATOR.MAIN , { replace: true });
+  };
+
+  const handleBack = onBack ?? goBack;
+
+  return (
+    <div className="w-full max-w-125 bg-light-gray-1 mx-auto dark:bg-light-gray-7-logo flex flex-col h-dvh">
+      <div className="shrink-0 w-full">
+        <SubHeader title={title} onClose={handleBack} />
+      </div>
+      <div className="flex flex-col overflow-y-auto flex-1 min-h-0 h-full">
+        {children}
+      </div>
+    </div>
+  );
+};

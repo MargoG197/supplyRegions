@@ -17,10 +17,10 @@ export const Vacation = () => {
 
   return (
     <>
-      <Card title="Отпуск" titleFont="font-bodytext-m" titleGap="xs">
+      <Card rounded="xs" paddingBottom="l" paddingTop="l" title="Отпуск" titleFont="font-bodytext-m" titleGap="none">
         <div className="flex flex-col gap-1.5">
           {hasVacation ? (
-            <YellowInfoBox fontColour="text-light-text-warning-default">
+            <YellowInfoBox fontColour="text-light-text-warning-default" className="mt-1">
               <p className="mt-px tracking-normal ">С 12 по 18 октября 2026 включительно <br/> Вернётесь к работе 19 октября</p>
             </YellowInfoBox>
           ) : (
@@ -30,7 +30,7 @@ export const Vacation = () => {
           )}
 
           {vacationInProcess ? (
-            <div className="w-full flex gap-1.5 justify-center">
+            <div className="w-full flex gap-2 justify-center">
               <Button
                 onClick={() => setIsOpen(true)}
                 variant="btn-M-WhiteDefault"
@@ -58,7 +58,7 @@ export const Vacation = () => {
       </Card>
       <BaseModal open={isOpen} onOpenChange={setIsOpen} title="Отпуск">
         <div className="h-svh overflow-hidden flex flex-col justify-between items-center">
-          <Card
+          <Card paddingBottom="l" paddingTop="l"
             title="Выберите даты отпуска"
             titleFont="font-bodytext-m"
             titleGap="xs"
@@ -67,9 +67,10 @@ export const Vacation = () => {
               label="Даты"
               value={dateRange}
               onChange={setDateRange}
+              hint="Корректный формат ДД.ММ.ГГГГ"
             />
           </Card>
-          <Card rounded="none" paddingTop="s" paddingBottom="l">
+          <Card rounded="none" paddingTop="s" paddingBottom="l" borderTop={true}>
             <div className="w-full flex justify-center">
               <Button
                 variant="btn-B-GreenDefault-lg"

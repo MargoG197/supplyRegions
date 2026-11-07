@@ -27,11 +27,9 @@ export const FullScreenQr = ({ item }: FullScreenQrProps) => {
         Полный экран
       </Button>
       <BaseModal title={item.subtitle} open={isOpen} onOpenChange={setIsOpen}>
-        <div className="w-full h-full mx-auto bg-light-gray-white flex justify-center">
-          <div className="px-18.75 mt-[26.5%]">
-            <div className="flex-1 flex flex-col justify-center items-center">
-              <div className="pb-4 font-bodytext-m">{item.title}</div>
-              <div className="w-full aspect-square rounded-lg p-2 mb-2 flex items-center justify-center">
+        <div className="w-full h-full mx-auto bg-light-gray-white flex justify-center pt-5">
+             <div className="flex-1 flex flex-col justify-center items-center ">
+              <div className="w-full rounded-lg p-2 mb-2 flex items-center justify-center px-18.75">
                 <QRCodeSVG
                   value={item.qrValue}
                   size={256}
@@ -39,14 +37,13 @@ export const FullScreenQr = ({ item }: FullScreenQrProps) => {
                   level="L"
                 />
               </div>
+              <div className="pb-4 font-headline-h2 text-center px-13.75">{item.title}</div>
             </div>
-          </div>
         </div>
         <Card
           rounded="none"
           paddingTop="s"
           paddingBottom="l"
-          className="border-t-[0.33px] "
         >
           <div className="w-full flex justify-center">
             <WithdrawalReportWidget mainScreen={false} />

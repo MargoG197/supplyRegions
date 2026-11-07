@@ -18,11 +18,11 @@ export const Profile = () => {
   return (
     <TabPageLayout title="Профиль">
       <div className="flex flex-col gap-1 mb-4">
-        <Card>
+        <Card rounded="xs" paddingBottom="l" paddingTop="l" >
           <Chip label="Куратор" />
           <div className="font-bodytext-regular mt-1.5">{curatorName}</div>
         </Card>
-        <Card title="Контакты" titleFont="font-bodytext-m" titleGap="s">
+        <Card rounded="xs" paddingBottom="l" paddingTop="l" title="Контакты" titleFont="font-bodytext-m" titleGap="s">
           <div className="flex justify-between font-bodytext-regular">
             <p className="text-light-gray-4">Номер телефона</p>
             <p>{curatorPhone}</p>
@@ -33,7 +33,7 @@ export const Profile = () => {
           </div>
         </Card>
         <Vacation />
-        <Card title="Организация" titleFont="font-bodytext-m" titleGap="xs">
+        <Card rounded="xs" paddingBottom="l" paddingTop="l" title="Организация" titleFont="font-bodytext-m" titleGap="xs">
           <div className="flex flex-col gap-1 font-bodytext-regular">
             <p>{companyName}</p>
             <span>
@@ -47,7 +47,7 @@ export const Profile = () => {
           </div>
         </Card>
         <CategoriesList />
-        <Card>
+        <Card rounded="xs" paddingBottom="l" paddingTop="l">
           <KnowledgeBaseWidget />
         </Card>
       </div>

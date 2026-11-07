@@ -1,11 +1,11 @@
 import { useState } from "react";
-
-import { TabPageLayout } from "@/shared/layouts/TabPageLayout";
 import { OrderDoc } from "@/widgets/KnowledgeBase/OrderDoc";
 import { CuratorDoc } from "@/widgets/KnowledgeBase/CuratorDoc";
 import { EventRules } from "@/widgets/KnowledgeBase/EventRules";
 import { PhotoReportNotice } from "@/widgets/KnowledgeBase/PhotoReportNotice";
 import { AttachedFile } from "@/shared/ui/Form/AttachedFile copy";
+import { TabPageLayoutNoGap } from "@/shared/layouts/TabPageLayoutNoGap";
+import { Card } from "@/shared/ui/Card";
 
 const tabsData = [
   { id: "documents", label: "Документы" },
@@ -14,24 +14,24 @@ const tabsData = [
 ];
 
 export const KnowledgeBase = () => {
-
   const [activeTab, setActiveTab] = useState("documents");
 
   return (
     <>
-       <TabPageLayout title="База знаний">
-        <div className="w-full mx-auto h-lvh bg-light-gray-white">
+      <TabPageLayoutNoGap title="База знаний">
+        <div className="w-full mx-auto h-lvh">
           {/* Таб-бар */}
-          <div className="flex justify-between items-center px-4.5 py-1.5">
+          <div className="flex justify-between items-center px-4.5 pb-2.5 mb-1 bg-light-gray-white">
             {tabsData.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`
-              ${activeTab === tab.id
-                    ? "btn-XS-WhiteDefault"
-                    : "btn-XS-NoBorderDefault"
-                  }
+              ${
+                activeTab === tab.id
+                  ? "btn-XS-WhiteDefault"
+                  : "btn-XS-NoBorderDefault"
+              }
             `}
               >
                 {tab.label}
@@ -40,38 +40,44 @@ export const KnowledgeBase = () => {
           </div>
 
           {/* Контент */}
-          <div className="px-4">
+          <div>
             {activeTab === "templates" && (
-              <div className="flex flex-col gap-2 mt-3">
-                <AttachedFile
-                  action="download"
-                  fileName="Акт выемки, 2 экз."
-                  onDownload={() => { }}
-                  className="h-15.5 pl-2.5"
-                />
-                <AttachedFile
-                  action="download"
-                  fileName="Ведомость раздачи"
-                  onDownload={() => { }}
-                  className="h-15.5 pl-2.5"
-                />
-              </div>
+              <Card paddingBottom="l" paddingTop="l">
+                <div className="flex flex-col gap-2">
+                  <AttachedFile
+                    action="download"
+                    fileName="Акт выемки, 2 экз."
+                    onDownload={() => {}}
+                    className="pl-5"
+                  />
+                  <AttachedFile
+                    action="download"
+                    fileName="Ведомость раздачи"
+                    onDownload={() => {}}
+                    className="pl-5"
+                  />
+                </div>
+              </Card>
             )}
             {activeTab === "documents" && (
-              <div className="flex flex-col mt-4 gap-2 overflow-scroll max-h-[82vh]">
-                <OrderDoc />
-                <CuratorDoc />
-              </div>
+              <Card  paddingBottom="l" paddingTop="l">
+                <div className="flex flex-col gap-4">
+                  <OrderDoc />
+                  <CuratorDoc />
+                </div>
+              </Card>
             )}
             {activeTab === "memos" && (
-              <div className="flex flex-col mt-3 gap-2 overflow-scroll max-h-[82vh]">
-                <EventRules />
-                <PhotoReportNotice />
-              </div>
+              <Card  paddingBottom="l" paddingTop="l">
+                <div className="flex flex-col gap-4">
+                  <EventRules />
+                  <PhotoReportNotice />
+                </div>
+              </Card>
             )}
           </div>
         </div>
-        </TabPageLayout>
+      </TabPageLayoutNoGap>
     </>
   );
 };

@@ -19,10 +19,9 @@ export const SubHeader = ({ title, onClose }: SubHeaderProps) => {
           делает так, что текст всегда строго по центру экрана, 
           независимо от ширины стрелки слева. 
           pointer-events-none нужен, чтобы можно было кликать сквозь текст. */}
-      <h2 className="absolute inset-x-0 flex items-center justify-center pointer-events-none font-bodytext-regular text-light-gray-black dark:text-light-gray-1">
-        {title}
-      </h2>
-      
+      <div className="absolute inset-x-0 flex items-center justify-center pointer-events-none font-bodytext-regular text-light-gray-black dark:text-light-gray-1">
+        <h2 className='max-w-[60%] line-clamp-2 text-center'>{title}</h2>
+      </div>
     </div>
   );
 };

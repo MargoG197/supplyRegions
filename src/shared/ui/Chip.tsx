@@ -13,6 +13,7 @@ export interface ChipProps {
   disabled?: boolean;
   className?: string;
   selectedBackground?: string
+  bgColor?: "bg-light-gray-1" | "bg-none"
 }
 
 export const Chip = ({
@@ -24,6 +25,7 @@ export const Chip = ({
   selected = false,
   disabled = false,
   selectedBackground = 'bg-light-red-primary',
+  bgColor = 'bg-light-gray-1',
   className,
 }: ChipProps) => {
   const isInteractive = Boolean(onClick);
@@ -31,8 +33,8 @@ export const Chip = ({
   const baseClasses = classNames(
     'inline-flex w-fit items-center gap-1.25 px-3 h-6 rounded-full transition-colors font-label-regular',
     selected
-      ? ' text-white ' + selectedBackground
-      : 'bg-light-gray-1 dark:bg-light-gray-6 text-light-gray-black dark:text-light-gray-white',
+      ? ' text-light-gray-white ' + selectedBackground
+      : ' dark:bg-light-gray-6 text-light-gray-black dark:text-light-gray-white ' + bgColor,
     // hover только для интерактивных и не disabled
     isInteractive && !disabled && !selected &&
       'hover:bg-light-gray-2 dark:hover:bg-light-gray-5',

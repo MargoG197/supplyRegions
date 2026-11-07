@@ -1,6 +1,12 @@
 import { ReactNode } from 'react';
 import classNames from 'classnames';
-type TitleFont = 'font-headline-h2' | 'font-bodytext-m';
+type TitleFont = 'font-headline-h2' | 'font-bodytext-m' | 'font-caption-regular';
+type TitleColorRole =
+  | 'primary'    // основной текст
+  | 'secondary'  // приглушённый
+  ;
+
+
 // Задаем опции для отступов
 type Spacing = 'none' | 'xs' | 's' | 'm' | 'l' | 'xl';
 
@@ -12,6 +18,7 @@ interface CardProps {
    * По умолчанию 'h3'.
    */
   titleFont?: TitleFont; 
+  titleColor?: TitleColorRole;
    /** Действие справа от заголовка (например, кнопка "Смотреть все") */
   headerAction?: ReactNode;
   /** Контент внутри карточки */
@@ -19,7 +26,7 @@ interface CardProps {
   /** Дополнительные классы (например, для смены фона) */
   className?: string;
   /** Скругление: 2xl (по умолчанию) или none */
-  rounded?: 'm' | 'none';
+  rounded?: 'm' | 'xs' | 'none';
     /**
    * Отступ между заголовком и контентом.
    * По умолчанию 'm' (mb-3).
@@ -29,7 +36,9 @@ interface CardProps {
   paddingTop?: Spacing;
   /** Отступ снизу */
   paddingBottom?: Spacing;
+  borderTop?: boolean
 }
+
 const ptMap: Record<Spacing, string> = {
   none: 'pt-0',
   xs: 'pt-1',
@@ -38,6 +47,7 @@ const ptMap: Record<Spacing, string> = {
   l: 'pt-5',
   xl: 'pt-8',
 };
+
 const pbMap: Record<Spacing, string> = {
   none: 'pb-0',
   xs: 'pb-1',
@@ -54,6 +64,12 @@ const titleGapMap: Record<NonNullable<CardProps['titleGap']>, string> = {
   m: 'mb-3',
   l: 'mb-4',
 };
+
+const TITLE_COLOR_CLASSES: Record<TitleColorRole, string> = {
+  primary:   'text-light-gray-black dark:text-light-gray-white',
+  secondary: 'text-light-gray-5 dark:text-light-gray-4',
+};
+
 export const Card = ({ 
   title, 
   titleFont = 'font-headline-h2',
@@ -64,18 +80,22 @@ export const Card = ({
   titleGap = 'm',
   paddingTop = 'm',
   paddingBottom = 'm',
+  titleColor = "primary",
+  borderTop = false,
 }: CardProps) => {
   const hasHeader = Boolean(title || headerAction);
   return (
     <div 
       className={classNames(
-        'w-full max-w-125 min-h-14.25 mx-auto flex flex-col items-start p-4',
+        'w-full max-w-125 min-h-14.25 mx-auto flex flex-col text-left items-start p-4',
         ptMap[paddingTop],
         pbMap[paddingBottom],
+        borderTop && 'border-t-[0.33px]',
         'bg-light-gray-white dark:bg-light-gray-7-logo',
         {
           'rounded-m': rounded === 'm',
           'rounded-none': rounded === 'none',
+          'rounded-xs': rounded === 'xs',
         },
         className 
       )}
@@ -91,7 +111,7 @@ export const Card = ({
         >
           {title ? (
             <h2 className={classNames(
-            'text-light-gray-black dark:text-light-gray-white',
+            TITLE_COLOR_CLASSES[titleColor],
             titleFont
           )}>
               {title}

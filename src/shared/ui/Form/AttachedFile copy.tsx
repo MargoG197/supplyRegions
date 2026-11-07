@@ -30,14 +30,14 @@ export const AttachedFile = (props: AttachedFileProps) => {
     <div 
       className={twMerge(
         classNames(
-          'flex items-center justify-between w-full h-13.75 px-3 bg-light-gray-1 dark:bg-light-gray-6 rounded-xs',
+          'flex items-center justify-between w-full h-13.75 px-4 bg-light-gray-1 dark:bg-light-gray-6 rounded-m',
           className
         )
       )}
     >
-      <div className="flex items-center gap-0.5 overflow-hidden">
-        <ClipIcon className="shrink-0 text-light-gray-5 dark:text-light-gray-4" />
-        <span className="font-bodytext-regular text-light-gray-black dark:text-light-gray-white truncate">
+      <div className="flex items-center gap-1.25">
+        <ClipIcon className="shrink-0 text-light-gray-black dark:text-light-gray-white" />
+        <span className="font-bodytext-m text-light-gray-black dark:text-light-gray-white truncate">
           {fileName}
         </span>
       </div>
