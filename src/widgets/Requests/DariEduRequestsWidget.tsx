@@ -58,30 +58,30 @@ const mockRequests: RequestItem[] = [
     date: "01.10.2026",
     isChecked: false,
   },
-  // {
-  //   id: "6",
-  //   name: "Павел Гринёв",
-  //   category: "Пострадавший в режиме ЧС",
-  //   status: "pending",
-  //   date: "с 11.10.2026",
-  //   isChecked: false,
-  // },
-  // {
-  //   id: "7",
-  //   name: "Виктор Сазонов",
-  //   category: "Пенсионер",
-  //   status: "new",
-  //   date: "с 11.10.2026",
-  //   isChecked: false,
-  // },
-  // {
-  //   id: "8",
-  //   name: "Ольга Мельник",
-  //   category: "Малоимущая семья",
-  //   status: "completed",
-  //   date: "01.10.2026",
-  //   isChecked: false,
-  // },
+  {
+    id: "6",
+    name: "Павел Гринёв",
+    category: "Пострадавший в режиме ЧС",
+    status: "pending",
+    date: "с 11.10.2026",
+    isChecked: false,
+  },
+  {
+    id: "7",
+    name: "Виктор Сазонов",
+    category: "Пенсионер",
+    status: "new",
+    date: "с 11.10.2026",
+    isChecked: false,
+  },
+  {
+    id: "8",
+    name: "Ольга Мельник",
+    category: "Малоимущая семья",
+    status: "completed",
+    date: "01.10.2026",
+    isChecked: false,
+  },
   // {
   //   id: "9",
   //   name: "Виктор Сазонов",
@@ -253,7 +253,7 @@ export const DariEduRequestsWidget = ({
                 Найдено {requests.length} заявок
               </p>
             </div>
-            <div className="flex rounded-xs flex-col justify-start items-start max-h-[80%] overflow-y-auto gap-3 p-4 mb-1 bg-light-gray-white">
+            <div className="flex rounded-xs flex-col justify-start items-start max-h-[79%] overflow-y-auto gap-3 p-4 mb-1 bg-light-gray-white">
               {visibleRequests.map((r) => (
                 <RequestStatusBaseCard
                   card={r}

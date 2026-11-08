@@ -90,7 +90,7 @@ export const DistributionReport = () => {
   return (
     <>
       <TabPageLayout title="Подать отчет о раздаче">
-        <div className="h-[82%] overflow-y-scroll flex flex-col gap-1">
+        <div className="h-[81%] overflow-y-scroll flex flex-col gap-1">
           {/* <Card> */}
           <div className="px-4 py-5 flex flex-col gap-3 w-full bg-light-gray-white rounded-m">
             {showInfo && (
