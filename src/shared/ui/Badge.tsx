@@ -14,7 +14,7 @@ export interface BadgeProps {
   /** Цветовое решение */
   variant: BadgeVariant;
   /** Размер (опционально) */
-  size?: 's' | 'm';
+  size?: 's';
   className?: string;
   onClick?: () => void
   active?: boolean
@@ -29,8 +29,8 @@ const variantClasses: Record<BadgeVariant, string> = {
 };
 
 const sizeClasses = {
-  s: 'h-5 px-2 font-caption-regular',
-  m: 'h-6 px-3 font-label-regular',
+  s: ' px-3 py-1 font-label-regular',
+  // m: 'h-6 px-3 font-label-regular',
 };
 
 export const Badge = ({ 
@@ -44,7 +44,7 @@ export const Badge = ({
   return (
     <span
       className={classNames(
-        'inline-flex w-fit items-center justify-center rounded-full whitespace-nowrap',
+        'inline-flex w-fit items-center justify-center rounded-full whitespace-nowrap min-w-6',
         sizeClasses[size],
         variantClasses[variant],
         active ? "opacity-100" : "opacity-50",

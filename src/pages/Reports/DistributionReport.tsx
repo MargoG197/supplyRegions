@@ -15,7 +15,7 @@ import { AttachedFile } from "@/shared/ui/Form/AttachedFile";
 import paper from "@/assets/paper.jpg";
 import { DariEduRequestsWidget } from "@/widgets/Requests/DariEduRequestsWidget";
 import { RequestItem } from "@/shared/types/constants";
-import { RequestStatusBaseCard } from "@/shared/ui/Form/RequestStatusBaseCard";
+// import { RequestStatusBaseCard } from "@/shared/ui/Form/RequestStatusBaseCard";
 
 
 export const DistributionReport = () => {
@@ -67,6 +67,7 @@ export const DistributionReport = () => {
   //     description: "Лента №106",
   //   },
   // ];
+  console.log(requests, 'requests ')
 
   const removePhoto = (index: number) => {
     setPhotos((prev) => prev.filter((_, i) => i !== index));
@@ -119,7 +120,7 @@ export const DistributionReport = () => {
                 placeholder="0.00"
                 value={weight}
                 onChange={(e) => setWeight(e.target.value)}
-                hint="Например, 26.8"
+                hint="Например, 120.5"
                 mode="weight"
                 step="0.1"
               />
@@ -145,13 +146,6 @@ export const DistributionReport = () => {
               mode="integer"
               step="1"
             />
-            {<div className="flex rounded-xs flex-col justify-start items-start gap-2">
-              {requests.map((r) => (
-                <RequestStatusBaseCard
-                  card={r}
-                />
-              ))}
-            </div>}
             <DariEduRequestsWidget onSave={(cards: RequestItem[]) => {
               setRequests(cards)
             }}/>
@@ -199,7 +193,7 @@ export const DistributionReport = () => {
         >
           <div className="w-full flex flex-col justify-center">
             <Button onClick={handleSubmit} variant="btn-B-GreenDefault-lg">
-              Отправить отчет
+              Подать отчёт о раздаче
             </Button>{" "}
             <p className="font-caption-regular text-center text-light-gray-5 mt-4 px-2">
               Редактирование доступно 2 недели после отправки в списке отчетов

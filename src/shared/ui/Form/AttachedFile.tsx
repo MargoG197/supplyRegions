@@ -20,7 +20,7 @@ export const AttachedFile = ({ src, onRemove }: AttachedFileProps) => {
       <button
         type="button"
         onClick={onRemove}
-        className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center bg-light-gray-1/40 hover:bg-light-gray-1/60 rounded-full transition-colors backdrop-blur-sm z-20"
+        className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center bg-light-gray-1/40 hover:bg-light-gray-1/60 rounded-full transition-colors backdrop-blur-sm"
         aria-label="Удалить фото"
       >
         <CloseIcon className="w-3.5 h-3.5 text-light-gray-7-logo" />
