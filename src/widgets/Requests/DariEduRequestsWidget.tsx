@@ -1,15 +1,20 @@
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Arrow_left from "~assets/icons/chevron.left.svg?react";
 import { StatusIcon } from "@/shared/ui/Form/StatusIcon";
 import { BaseModal } from "@/shared/ui/BaseModal";
 import { Badge } from "@/shared/ui/Badge";
 
 import { RequestStatusBaseCard } from "@/shared/ui/Form/RequestStatusBaseCard";
-import { FILTER_STATUSES, RequestItem } from "@/shared/types/constants";
+import {
+  FILTER_STATUSES,
+  REQUEST_STATUS_MAP,
+  RequestItem,
+} from "@/shared/types/constants";
+import { Card } from "@/shared/ui/Card";
+import { Button } from "@/shared/ui/Button";
 
 export type RequestStatus = "critical" | "pending" | "new" | "completed";
-
-
+const ALL_STATUSES = Object.keys(REQUEST_STATUS_MAP) as RequestStatus[];
 const mockRequests: RequestItem[] = [
   {
     id: "1",
@@ -51,13 +56,118 @@ const mockRequests: RequestItem[] = [
     date: "01.10.2026",
     isChecked: false,
   },
+  {
+    id: "6",
+    name: "Павел Гринёв",
+    category: "Пострадавший в режиме ЧС",
+    status: "pending",
+    date: "с 11.10.2026",
+    isChecked: false,
+  },
+  {
+    id: "7",
+    name: "Виктор Сазонов",
+    category: "Пенсионер",
+    status: "new",
+    date: "с 11.10.2026",
+    isChecked: false,
+  },
+  {
+    id: "8",
+    name: "Ольга Мельник",
+    category: "Малоимущая семья",
+    status: "completed",
+    date: "01.10.2026",
+    isChecked: false,
+  },
+  {
+    id: "9",
+    name: "Виктор Сазонов",
+    category: "Пенсионер",
+    status: "new",
+    date: "с 11.10.2026",
+    isChecked: false,
+  },
+  {
+    id: "10",
+    name: "Ольга Мельник",
+    category: "Малоимущая семья",
+    status: "completed",
+    date: "01.10.2026",
+    isChecked: false,
+  },
+  {
+    id: "11",
+    name: "Виктор Сазонов",
+    category: "Пенсионер",
+    status: "new",
+    date: "с 11.10.2026",
+    isChecked: false,
+  },
+  {
+    id: "12",
+    name: "Ольга Мельник",
+    category: "Малоимущая семья",
+    status: "completed",
+    date: "01.10.2026",
+    isChecked: false,
+  },
 ];
 
-
-export const DariEduRequestsWidget = () => {
-  // const [requests, setRequests] = useState(mockRequests);
+export const DariEduRequestsWidget = ({
+  onSave,
+}: {
+  onSave: (card: RequestItem[]) => void;
+}) => {
+  const [requests, setRequests] = useState<RequestItem[]>(mockRequests);
   const [isOpen, setIsOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(true);
+  const [selectedStatuses, setSelectedStatuses] =
+    useState<RequestStatus[]>(ALL_STATUSES);
+
+  const toggleStatus = (id: RequestStatus) => {
+    setSelectedStatuses((prev) => {
+      if (prev.length === ALL_STATUSES.length) {
+        return [id];
+      }
+
+      const next = prev.includes(id)
+        ? prev.filter((s) => s !== id)
+        : [...prev, id];
+
+      if (next.length === 0) {
+        return ALL_STATUSES;
+      }
+
+      return next;
+    });
+  };
+
+  const checkedRequests = useMemo(
+    () => requests.filter((r) => r.isChecked),
+    [requests],
+  );
+
+  const hasChecked = checkedRequests.length > 0;
+
+  const handleSave = () => {
+    if (!hasChecked) return;
+    onSave?.(checkedRequests);
+    setIsOpen(false);
+  };
+
+  const visibleRequests = useMemo(() => {
+    if (selectedStatuses.length === 0) return requests;
+    return requests.filter((r) => selectedStatuses.includes(r.status));
+  }, [requests, selectedStatuses]);
+
+  const onRequestCardClick = useCallback((id: string, checked: boolean) => {
+    setRequests((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, isChecked: checked } : item,
+      ),
+    );
+  }, []);
 
   const handleGoToRequests = () => {
     setIsOpen(true);
@@ -102,21 +212,44 @@ export const DariEduRequestsWidget = () => {
               {FILTER_STATUSES.map((status) => {
                 return (
                   <Badge
+                    key={status.id}
                     label={status.label}
                     variant={status.variant}
+                    active={selectedStatuses.includes(status.id)}
                     size="m"
+                    onClick={() => toggleStatus(status.id)}
                   />
                 );
               })}
             </div>
             <p className="font-caption-regular">Найдено 38 заявок</p>
           </div>
-          <div className="flex flex-col justify-start items-start gap-2 p-4 mb-1 bg-light-gray-white">
-            {mockRequests.map((r) => (
-              <RequestStatusBaseCard name={r.name} category={r.category} status={r.status} date={r.date} checked={r.isChecked} />
+          <div className="flex rounded-xs flex-col justify-start items-start h-[80%] overflow-y-auto gap-2 p-4 mb-1 bg-light-gray-white">
+            {visibleRequests.map((r) => (
+              <RequestStatusBaseCard
+                card={r}
+                onCheckChange={onRequestCardClick}
+              />
             ))}
           </div>
         </div>
+        <Card
+          rounded="none"
+          paddingTop="s"
+          className="h-fit absolute bottom-0"
+          paddingBottom="none"
+          borderTop={true}
+        >
+          <div className="w-full flex flex-col justify-center">
+            <Button
+              disabled={!hasChecked}
+              onClick={handleSave}
+              variant="btn-B-GreenDefault-lg"
+            >
+              Сохранить
+            </Button>
+          </div>
+        </Card>
       </BaseModal>
     </>
   );

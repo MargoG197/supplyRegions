@@ -7,8 +7,9 @@ export interface RequestItem {
   category: string;
   status: RequestStatus;
   date: string;
-  isChecked?: boolean;
+  isChecked: boolean;
 }
+
  export const REQUEST_STATUS_MAP: Record<
   RequestStatus,
   { label: string; variant: BadgeVariant }

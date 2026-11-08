@@ -1,74 +1,56 @@
 import classNames from 'classnames';
-// import { REQUEST_STATUS_MAP, type RequestStatus } from './requestStatusMap';
 import { StatusIcon } from './StatusIcon';
 import { Badge } from '../Badge';
-import { RequestStatus } from '@/widgets/Requests/DariEduRequestsWidget';
-import { REQUEST_STATUS_MAP } from '@/shared/types/constants';
+import { REQUEST_STATUS_MAP, RequestItem } from '@/shared/types/constants';
+import { memo } from 'react';
 
 interface RequestStatusBaseCardProps {
-  name: string;
-  category: string;
-  status: RequestStatus;
-  date: string;
-  /** Состояние чекбокса */
-  checked?: boolean;
+  card: RequestItem;
   /** Колбэк при клике на чекбокс */
-  onCheckChange?: (checked: boolean) => void;
-  /** Колбэк при клике на всю карточку */
-  onClick?: () => void;
+  onCheckChange?: (id: string, checked: boolean) => void;
   className?: string;
 }
 
-export const RequestStatusBaseCard = ({
-  name,
-  category,
-  status,
-  date,
-  checked = false,
+export const RequestStatusBaseCard = memo(({
+  card,
   onCheckChange,
-  onClick,
   className,
 }: RequestStatusBaseCardProps) => {
-  const Component = onClick ? 'button' : 'div';
-  
   // Достаем данные для бейджа из нашего маппинга
-  const badgeInfo = REQUEST_STATUS_MAP[status];
+  const badgeInfo = REQUEST_STATUS_MAP[card.status];
 
   return (
-    <Component
-      type={onClick ? 'button' : undefined}
-      onClick={onClick}
+    <div
+      onClick={onCheckChange && (() => onCheckChange(card.id, !card.isChecked))}
+      // onClick={onCheckChange && () => onCheckChange(card.id, !card.isChecked)}
       className={classNames(
         'w-full flex items-center gap-3 p-3 rounded-xs bg-light-gray-1 dark:bg-light-gray-6 text-left transition-colors',
-        onClick && 'hover:bg-light-gray-2 dark:hover:bg-light-gray-5 cursor-pointer',
+        'hover:bg-light-gray-2 dark:hover:bg-light-gray-5 cursor-pointer',
         className,
       )}
     >
-      {/* ЛЕВЫЙ БЛОК: Иконка статуса (чекбокс) */}
-      <div className="shrink-0" onClick={(e) => e.stopPropagation()}>
+      {onCheckChange &&  <div className="shrink-0" onClick={(e) => e.stopPropagation()}>
         <StatusIcon
-          checked={checked} 
-          onChange={(val) => onCheckChange?.(val)} 
+          checked={card.isChecked} 
+          onChange={(val) => onCheckChange?.(card.id, val)} 
         />
-      </div>
+      </div>}
 
-      {/* ЦЕНТРАЛЬНЫЙ БЛОК: Имя и категория */}
       <div className="flex flex-col grow min-w-0">
         <span className="font-bodytext-m text-light-gray-black dark:text-light-gray-white truncate">
-          {name}
+          {card.name}
         </span>
         <span className="font-caption-regular text-light-gray-5 dark:text-light-gray-4 truncate">
-          {category}
+          {card.category}
         </span>
       </div>
 
-      {/* ПРАВЫЙ БЛОК: Бейдж и дата */}
       <div className="shrink-0 flex flex-col items-end justify-center gap-1">
         <Badge label={badgeInfo.label} variant={badgeInfo.variant} />
         <span className="font-caption-regular text-light-gray-5 dark:text-light-gray-4">
-          {date}
+          {card.date}
         </span>
       </div>
-    </Component>
+    </div>
   );
-};
+});

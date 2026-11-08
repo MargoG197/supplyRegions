@@ -6,16 +6,18 @@ export type BadgeVariant =
   | 'pending'   // Желтый / Оранжевый
   | 'new'      // Синий
   | 'completed'   // Зеленый
-  | 'neutral';  // Серый (по умолчанию)
+  // | 'neutral';  // Серый (по умолчанию)
 
 export interface BadgeProps {
   /** Текст бейджа */
   label: ReactNode;
   /** Цветовое решение */
-  variant?: BadgeVariant;
+  variant: BadgeVariant;
   /** Размер (опционально) */
   size?: 's' | 'm';
   className?: string;
+  onClick?: () => void
+  active?: boolean
 }
 
 const variantClasses: Record<BadgeVariant, string> = {
@@ -23,7 +25,7 @@ const variantClasses: Record<BadgeVariant, string> = {
   pending: 'bg-light-orange-primary text-light-gray-white', 
   new: 'bg-light-blue-primary text-light-gray-white',
   completed: 'bg-light-brand-green text-light-gray-white',
-  neutral: 'bg-light-gray-1 text-light-gray-black dark:bg-light-gray-6 dark:text-light-gray-white',
+  // neutral: 'bg-light-gray-1 text-light-gray-black dark:bg-light-gray-6 dark:text-light-gray-white',
 };
 
 const sizeClasses = {
@@ -33,9 +35,11 @@ const sizeClasses = {
 
 export const Badge = ({ 
   label, 
-  variant = 'neutral', 
+  variant, 
   size = 's',
-  className 
+  className,
+  onClick,
+  active = true,
 }: BadgeProps) => {
   return (
     <span
@@ -43,8 +47,10 @@ export const Badge = ({
         'inline-flex w-fit items-center justify-center rounded-full whitespace-nowrap',
         sizeClasses[size],
         variantClasses[variant],
+        active ? "opacity-100" : "opacity-50",
         className
       )}
+      onClick={onClick}
     >
       {label}
     </span>

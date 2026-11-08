@@ -14,6 +14,8 @@ import { AttachedPhoto } from "@/shared/ui/Form/AttachedPhoto";
 import { AttachedFile } from "@/shared/ui/Form/AttachedFile";
 import paper from "@/assets/paper.jpg";
 import { DariEduRequestsWidget } from "@/widgets/Requests/DariEduRequestsWidget";
+import { RequestItem } from "@/shared/types/constants";
+import { RequestStatusBaseCard } from "@/shared/ui/Form/RequestStatusBaseCard";
 
 
 export const DistributionReport = () => {
@@ -24,6 +26,7 @@ export const DistributionReport = () => {
   const [actFile, setActFile] = useState<File | null>(null);
   const [photos, setPhotos] = useState<File[]>([]);
   const [showInfo, setShowInfo] = useState(true);
+  const [requests, setRequests] = useState<RequestItem[]>([]);
   // const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   // // Тестовые данные для селекта
   // const mockStores = [
@@ -142,7 +145,16 @@ export const DistributionReport = () => {
               mode="integer"
               step="1"
             />
-            <DariEduRequestsWidget/>
+            {<div className="flex rounded-xs flex-col justify-start items-start gap-2">
+              {requests.map((r) => (
+                <RequestStatusBaseCard
+                  card={r}
+                />
+              ))}
+            </div>}
+            <DariEduRequestsWidget onSave={(cards: RequestItem[]) => {
+              setRequests(cards)
+            }}/>
           </div>
           <div className="px-4 py-5 flex flex-col gap-3 w-full bg-light-gray-white rounded-m">
             <div className="flex flex-col gap-3">
