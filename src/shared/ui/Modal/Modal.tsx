@@ -124,7 +124,7 @@ export const Modal = ({
           // Если position === 'bottom' или 'top', лучше чтобы ширина была 100%
           className={classNames(
             "w-full max-h-full overflow-y-auto",
-            position === 'center' && "h-auto",
+            position === 'center' && "h-auto flex justify-center ",
             className
           )}
           style={{ animation: isOpen ? currentAnimation.in : currentAnimation.out }}

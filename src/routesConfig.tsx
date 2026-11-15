@@ -13,8 +13,8 @@ import { WriteOffReport } from "@/pages/Reports/WriteOffReport";
 import { KnowledgeBase } from "./pages/KnowledgeBase/KnowledgeBase";
 import { Profile } from "./pages/Profile/Profile";
 import { Distribution } from "./pages/Reports/Distribution";
-// import { InfoLetterReport } from "./pages/Reports/InfoLetterReport";
 import { DistributionReport } from "./pages/Reports/DistributionReport";
+import { InfoLetterReport } from "./pages/Reports/InfoLetterReport";
 
 export const router = createBrowserRouter([
   {
@@ -66,10 +66,10 @@ export const router = createBrowserRouter([
             path: "distribution-report", 
             element: <DistributionReport /> 
           },
-          //  { 
-          //   path: "info-letter-report", 
-          //   element: <InfoLetterReport /> 
-          // },
+           { 
+            path: "info-letter-report", 
+            element: <InfoLetterReport /> 
+          },
         ]
       },
       

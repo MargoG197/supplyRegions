@@ -5,7 +5,7 @@ import { AttachedPhoto } from "@/shared/ui/Form/AttachedPhoto";
 import { FormFileUpload } from "@/shared/ui/Form/FormFileUpload";
 import { FormInput } from "@/shared/ui/Form/FormInput";
 import { FormSelect } from "@/shared/ui/Form/FormSelect";
-import { SuccessPopup } from "@/shared/ui/SuccessPopup";
+// import { SuccessPopup } from "@/shared/ui/SuccessPopup";
 import { useState } from "react";
 import { mergePhotos } from "@/shared/utils/helperFunctions";
 import { TabPageLayout } from "@/shared/layouts/TabPageLayout";
@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { PATHS } from "@/paths";
 import { Card } from "@/shared/ui/Card";
 import paper from "@/assets/paper.jpg";
+import { ConfirmModal } from "@/shared/ui/ConfirmModal";
 
 export const WithdrawalReport = () => {
   const [address, setAddress] = useState("");
@@ -20,7 +21,7 @@ export const WithdrawalReport = () => {
   const [weight, setWeight] = useState("");
   const [actFile, setActFile] = useState<File | null>(null);
   const [photos, setPhotos] = useState<File[]>([]);
-  const [isSuccessOpen, setIsSuccessOpen] = useState(false);
+  const [isOpenSuccess, setIsOpenSuccess] = useState(false);
   // Тестовые данные для селекта
   const mockStores = [
     {
@@ -66,7 +67,7 @@ export const WithdrawalReport = () => {
   };
   const handleSubmit = () => {
     // setIsOpen(false);
-    setIsSuccessOpen(true);
+    setIsOpenSuccess(true);
   };
 
   const handleFilesSelect = (files: File[]) => {
@@ -77,6 +78,9 @@ export const WithdrawalReport = () => {
 
   const handleGoToReport = () => {
     navigate(PATHS.REPORTS.WRITE_OFF);
+  };
+  const handleGoToTheMainPage = () => {
+    navigate(PATHS.CURATOR.MAIN);
   };
 
   return (
@@ -130,32 +134,31 @@ export const WithdrawalReport = () => {
                 <AttachedFile onRemove={() => setActFile(null)} src={paper} />
               )}
             </div>
-  
-              {/* Фото (картинки, включая HEIC с iPhone) */}
-              <FormFileUpload
-                label={
-                  <>
-                    Фото (до 3-х штук,{" "}
-                    <span className="text-light-error-red">необязательно</span>)
-                  </>
-                }
-                buttonText="Прикрепить фото"
-                mode="image"
-                onFilesSelect={handleFilesSelect}
-                gap={"mr-3"}
-              />
-              {photos.length > 0 && (
-                <div className="flex gap-2 overflow-x-auto pb-2">
-                  {photos.map((photo, index) => (
-                    <AttachedPhoto
-                      key={`${photo.name}-${index}`}
-                      file={photo}
-                      onRemove={() => removePhoto(index)}
-                    />
-                  ))}
-                </div>
-              )}
-       
+
+            {/* Фото (картинки, включая HEIC с iPhone) */}
+            <FormFileUpload
+              label={
+                <>
+                  Фото (до 3-х штук,{" "}
+                  <span className="text-light-error-red">необязательно</span>)
+                </>
+              }
+              buttonText="Прикрепить фото"
+              mode="image"
+              onFilesSelect={handleFilesSelect}
+              gap={"mr-3"}
+            />
+            {photos.length > 0 && (
+              <div className="flex gap-2 overflow-x-auto pb-2">
+                {photos.map((photo, index) => (
+                  <AttachedPhoto
+                    key={`${photo.name}-${index}`}
+                    file={photo}
+                    onRemove={() => removePhoto(index)}
+                  />
+                ))}
+              </div>
+            )}
           </div>
           {/* 2. Кастомный футер. 
           Он находится внутри скроллируемого контейнера, 
@@ -179,8 +182,27 @@ export const WithdrawalReport = () => {
             </p>
           </div>
         </Card>
+        <ConfirmModal
+          isOpen={isOpenSuccess}
+          onOpenChange={setIsOpenSuccess}
+          onConfirm={() => {
+            setIsOpenSuccess(false);
+            handleGoToReport();
+          }}
+          confirmBtnVariant="danger"
+          cancelBtnVariant="green"
+          title="Отчёт о выемке подан"
+          subtitle="Редактирование доступно 2 недели после отправки в списке отчетов"
+          cancelBtnText="Ок"
+          confirmBtnText="Есть списание"
+          onCancel={() => {
+            setIsOpenSuccess(false);
+            handleGoToTheMainPage();
+          }}
+          isSingleBtn={false}
+        />
       </TabPageLayout>
-      <SuccessPopup
+      {/* <SuccessPopup
         title="Отчёт о выемке подан"
         isOpen={isSuccessOpen}
         onOpenChange={setIsSuccessOpen}
@@ -189,7 +211,7 @@ export const WithdrawalReport = () => {
           setIsSuccessOpen(false);
           handleGoToReport();
         }}
-      />
+      /> */}
     </>
   );
 };

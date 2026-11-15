@@ -15,6 +15,9 @@ import { AttachedFile } from "@/shared/ui/Form/AttachedFile";
 import paper from "@/assets/paper.jpg";
 import { DariEduRequestsWidget } from "@/widgets/Requests/DariEduRequestsWidget";
 import { RequestItem } from "@/shared/types/constants";
+import { useNavigate } from "react-router-dom";
+import { PATHS } from "@/paths";
+import { ConfirmModal } from "@/shared/ui/ConfirmModal";
 // import { RequestStatusBaseCard } from "@/shared/ui/Form/RequestStatusBaseCard";
 
 
@@ -27,7 +30,7 @@ export const DistributionReport = () => {
   const [photos, setPhotos] = useState<File[]>([]);
   const [showInfo, setShowInfo] = useState(true);
   const [requests, setRequests] = useState<RequestItem[]>([]);
-  // const [isSuccessOpen, setIsSuccessOpen] = useState(false);
+  const [isOpenSuccess, setIsOpenSuccess] = useState(false);
   // // Тестовые данные для селекта
   // const mockStores = [
   //   {
@@ -81,11 +84,11 @@ export const DistributionReport = () => {
     setPhotos((prev) => mergePhotos(prev, files, 9));
   };
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // const handleGoToReport = () => {
-  //   navigate(PATHS.REPORTS.WRITE_OFF);
-  // };
+   const handleGoToTheMainPage = () => {
+    navigate(PATHS.CURATOR.MAIN);
+  };
 
   return (
     <>
@@ -200,6 +203,18 @@ export const DistributionReport = () => {
             </p>
           </div>
         </Card>
+        <ConfirmModal
+                isOpen={isOpenSuccess}
+                onOpenChange={setIsOpenSuccess}
+                onConfirm={() => {
+                  setIsOpenSuccess(false);
+                  handleGoToTheMainPage()
+                }}
+                title="Отчёт о раздаче подан"
+                subtitle="Редактирование доступно 2 недели после отправки в списке отчетов"
+                confirmBtnText="На главную"
+                isSingleBtn={true}
+              />
       </TabPageLayout>
     </>
   );
