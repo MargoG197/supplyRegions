@@ -20,7 +20,6 @@ import { PATHS } from "@/paths";
 import { ConfirmModal } from "@/shared/ui/ConfirmModal";
 // import { RequestStatusBaseCard } from "@/shared/ui/Form/RequestStatusBaseCard";
 
-
 export const DistributionReport = () => {
   const [numberOfSets, setNumberOfSets] = useState("");
   const [numberOfFamilyMembers, setNumberOfFamilyMembers] = useState("");
@@ -70,14 +69,14 @@ export const DistributionReport = () => {
   //     description: "Лента №106",
   //   },
   // ];
-  console.log(requests, 'requests ')
+  console.log(requests, "requests ");
 
   const removePhoto = (index: number) => {
     setPhotos((prev) => prev.filter((_, i) => i !== index));
   };
   const handleSubmit = () => {
     // setIsOpen(false);
-    // setIsSuccessOpen(true);
+    setIsOpenSuccess(true);
   };
 
   const handleFilesSelect = (files: File[]) => {
@@ -86,7 +85,7 @@ export const DistributionReport = () => {
 
   const navigate = useNavigate();
 
-   const handleGoToTheMainPage = () => {
+  const handleGoToTheMainPage = () => {
     navigate(PATHS.CURATOR.MAIN);
   };
 
@@ -149,9 +148,11 @@ export const DistributionReport = () => {
               mode="integer"
               step="1"
             />
-            <DariEduRequestsWidget onSave={(cards: RequestItem[]) => {
-              setRequests(cards)
-            }}/>
+            <DariEduRequestsWidget
+              onSave={(cards: RequestItem[]) => {
+                setRequests(cards);
+              }}
+            />
           </div>
           <div className="px-4 py-5 flex flex-col gap-3 w-full bg-light-gray-white rounded-m">
             <div className="flex flex-col gap-3">
@@ -204,17 +205,17 @@ export const DistributionReport = () => {
           </div>
         </Card>
         <ConfirmModal
-                isOpen={isOpenSuccess}
-                onOpenChange={setIsOpenSuccess}
-                onConfirm={() => {
-                  setIsOpenSuccess(false);
-                  handleGoToTheMainPage()
-                }}
-                title="Отчёт о раздаче подан"
-                subtitle="Редактирование доступно 2 недели после отправки в списке отчетов"
-                confirmBtnText="На главную"
-                isSingleBtn={true}
-              />
+          isOpen={isOpenSuccess}
+          onOpenChange={setIsOpenSuccess}
+          onConfirm={() => {
+            setIsOpenSuccess(false);
+            handleGoToTheMainPage();
+          }}
+          title="Отчёт о раздаче подан"
+          subtitle="Редактирование доступно 2 недели после отправки в списке отчетов"
+          confirmBtnText="На главную"
+          isSingleBtn={true}
+        />
       </TabPageLayout>
     </>
   );
